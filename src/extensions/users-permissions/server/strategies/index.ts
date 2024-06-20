@@ -7,22 +7,12 @@ import {
   publicPermissions as getPublicPermissions,
 } from "../../../../helpers/auth-service";
 
-const getService = (name) => {
-  return strapi.plugin("users-permissions").service(name);
-};
-
 // Define types for user, token, and settings
 interface User {
-  id: string;
-  confirmed: boolean;
-  blocked: boolean;
+  address: string;
   role: {
     id: string;
   };
-}
-
-interface Token {
-  id?: string;
 }
 
 interface Auth {
@@ -35,12 +25,6 @@ interface Auth {
 interface Config {
   scope?: string | string[];
 }
-
-const getAdvancedSettings = async (): Promise<any> => {
-  return await strapi
-    .store({ type: "plugin", name: "users-permissions" })
-    .get({ key: "advanced" });
-};
 
 const authenticate = async (ctx: Context): Promise<Auth> => {
   try {

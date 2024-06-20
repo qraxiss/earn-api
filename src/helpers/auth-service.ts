@@ -17,6 +17,7 @@ export async function walletInfo(address) {
       url: "/auth/wallet-info",
       params: {
         address,
+        service: process.env.SERVICE_KEY,
       },
     })
   ).data;

@@ -1,5 +1,4 @@
 import JWT, { JwtPayload } from "jsonwebtoken";
-import { walletInfo } from "../../../../helpers/auth-service";
 
 export default async (ctx, next) => {
   const { jwt } = ctx.request.body;
@@ -10,7 +9,11 @@ export default async (ctx, next) => {
   try {
     const { address } = JWT.verify(jwt, jwtSecret) as JwtPayload;
     ctx.session = { address };
-    console.log(ctx.state.user);
+    ctx.body = {
+      data: {
+        success: true,
+      },
+    };
   } catch (error: any) {
     ctx.throw(error.message, 403);
   }

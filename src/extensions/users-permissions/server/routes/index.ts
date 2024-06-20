@@ -1,3 +1,3 @@
 import jwtLogin from "./jwt-login";
-
-export default [jwtLogin];
+import logout from "./logout";
+export default [jwtLogin, logout];

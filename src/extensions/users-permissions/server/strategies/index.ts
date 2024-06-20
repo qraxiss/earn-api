@@ -5,7 +5,7 @@ import { Context } from "koa"; // Assuming Koa is used for the context
 import {
   walletInfo,
   publicPermissions as getPublicPermissions,
-} from "../../../../helpers/auth-service";
+} from "../../../../services/auth";
 
 // Define types for user, token, and settings
 interface User {

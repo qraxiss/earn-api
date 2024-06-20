@@ -1,5 +1,5 @@
 import JWT, { JwtPayload } from "jsonwebtoken";
-import { walletInfo } from "../../../../helpers/auth-service";
+import { walletInfo } from "../../../../services/auth";
 
 export default async (ctx, next) => {
   const { jwt } = ctx.request.body;

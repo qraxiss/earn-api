@@ -10,13 +10,13 @@ export const AUTH_SERVICE = axios.create({
   },
 });
 
-export async function walletInfo(address) {
+export async function info(id) {
   return (
     await AUTH_SERVICE.request({
       method: "GET",
-      url: "/auth/wallet-info",
+      url: "/user/info",
       params: {
-        address,
+        id,
         service: process.env.SERVICE_KEY,
       },
     })
@@ -27,7 +27,10 @@ export async function publicPermissions() {
   return (
     await AUTH_SERVICE.request({
       method: "GET",
-      url: "/auth/public-permissions",
+      url: "/action/public-actions",
+      params: {
+        service: process.env.SERVICE_KEY,
+      },
     })
   ).data;
 }

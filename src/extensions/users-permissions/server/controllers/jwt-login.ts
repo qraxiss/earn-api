@@ -1,5 +1,5 @@
 import JWT, { JwtPayload } from "jsonwebtoken";
-import { walletInfo } from "../../../../services/auth";
+import { info } from "../../../../services/auth";
 
 export default async (ctx, next) => {
   const { jwt } = ctx.request.body;
@@ -8,13 +8,14 @@ export default async (ctx, next) => {
   ) as string;
 
   try {
-    const { address } = JWT.verify(jwt, jwtSecret) as JwtPayload;
+    const { id } = JWT.verify(jwt, jwtSecret) as JwtPayload;
+    console.log(id);
     try {
-      await walletInfo(address);
+      await info(id);
     } catch (error: any) {
       ctx.throw(error.response.data.error.message, 403);
     }
-    ctx.session = { address };
+    ctx.session = { id };
     ctx.body = {
       data: {
         success: true,

@@ -3,7 +3,7 @@ import { errors } from "@strapi/utils";
 const { ForbiddenError, UnauthorizedError } = errors;
 import { Context } from "koa"; // Assuming Koa is used for the context
 import {
-  walletInfo,
+  info,
   publicPermissions as getPublicPermissions,
 } from "../../../../services/auth";
 
@@ -28,14 +28,14 @@ interface Config {
 
 const authenticate = async (ctx: Context): Promise<Auth> => {
   try {
-    const { address } = ctx.session;
-    if (address) {
+    const { id } = ctx.session;
+    if (id) {
       // Invalid token
-      if (!address) {
+      if (!id) {
         return { authenticated: false, credentials: null, ability: null };
       }
 
-      const { user, permissions } = await walletInfo(address);
+      const { user, permissions } = await info(id);
 
       // No user associated with the token
       if (!user) {

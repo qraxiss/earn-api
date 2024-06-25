@@ -4,7 +4,8 @@
   "info": {
     "singularName": "card",
     "pluralName": "cards",
-    "displayName": "Card"
+    "displayName": "Card",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,21 @@
   "attributes": {
     "name": {
       "type": "string"
+    },
+    "price": {
+      "type": "float"
+    },
+    "profit": {
+      "type": "float"
+    },
+    "pricePercentage": {
+      "type": "float"
+    },
+    "profitPercentage": {
+      "type": "float"
+    },
+    "pricePercentageStart": {
+      "type": "float"
     }
   }
 }

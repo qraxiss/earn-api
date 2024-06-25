@@ -368,12 +368,18 @@ export interface ApiCardCard extends Schema.CollectionType {
     singularName: 'card';
     pluralName: 'cards';
     displayName: 'Card';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     name: Attribute.String;
+    price: Attribute.Float;
+    profit: Attribute.Float;
+    pricePercentage: Attribute.Float;
+    profitPercentage: Attribute.Float;
+    pricePercentageStart: Attribute.Float;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

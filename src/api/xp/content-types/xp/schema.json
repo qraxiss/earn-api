@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "xps",
+  "info": {
+    "singularName": "xp",
+    "pluralName": "xps",
+    "displayName": "XP"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "point": {
+      "type": "float"
+    },
+    "userId": {
+      "type": "integer"
+    }
+  }
+}

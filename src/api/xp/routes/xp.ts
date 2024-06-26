@@ -1,0 +1,5 @@
+/**
+ * xp router
+ */
+
+export default {};

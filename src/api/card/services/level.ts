@@ -2,37 +2,56 @@
  * level service
  */
 
+function calculate(card, level) {
+  let {
+    profit,
+    price,
+    pricePercentage,
+    profitPercentage,
+    pricePercentageStart,
+  } = card;
+
+  let relativePricePercentage = pricePercentageStart;
+  for (let index = 0; index < level; index++) {
+    profit += profit * (profitPercentage / 100);
+    price += price * (relativePricePercentage / 100);
+
+    relativePricePercentage = pricePercentage + relativePricePercentage;
+  }
+  const calculated = {
+    ...card,
+    profit,
+    price,
+    pricePercentage,
+    profitPercentage,
+    pricePercentageStart,
+  };
+  return calculated;
+}
+
 export default () => ({
-  async calculate(cardId: string | number, level: number) {
-    const card = await strapi.entityService.findOne("api::card.card", cardId);
+  calculate(card: any, level: number) {
+    return calculate(card, level);
+  },
 
-    if (!card) {
-      throw new Error("Card not found!");
-    }
+  calculateMultiple(ownedCards: any[]) {
+    return ownedCards.map((ownedCard) => ({
+      ...ownedCard,
+      card: calculate(ownedCard.card, ownedCard.level),
+    }));
+  },
 
-    let {
-      profit,
-      price,
-      pricePercentage,
-      profitPercentage,
-      pricePercentageStart,
-    } = card;
+  async calculateEarnPerHour(userId) {
+    const ownedCards = await strapi
+      .service("api::card.owned-card")
+      .findManyOwnedCardFromUserId(userId);
 
-    let relativePricePercentage = pricePercentageStart;
-    for (let index = 0; index < level; index++) {
-      profit += profit * (profitPercentage / 100);
-      price += price * (relativePricePercentage / 100);
+    let earnPerHour = 0;
 
-      relativePricePercentage = pricePercentage + relativePricePercentage;
-    }
+    ownedCards.forEach((ownedCard) => {
+      earnPerHour += ownedCard.card.profit;
+    });
 
-    return {
-      id: card.id,
-      profit,
-      price,
-      pricePercentage,
-      profitPercentage,
-      pricePercentageStart,
-    };
+    return earnPerHour;
   },
 });

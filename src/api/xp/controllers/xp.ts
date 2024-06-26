@@ -1,0 +1,5 @@
+/**
+ * xp controller
+ */
+
+export default {};

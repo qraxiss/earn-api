@@ -3,13 +3,15 @@
  */
 
 export default {
-  async calculate(ctx) {
-    const { cardId, level } = ctx.request.body;
+  async calculateEarnPerHour(ctx) {
+    const { id: userId } = ctx.session;
 
     try {
-      ctx.body = await strapi
-        .service("api::card.level")
-        .calculate(cardId, level);
+      ctx.send({
+        data: await strapi
+          .service("api::card.level")
+          .calculateEarnPerHour(userId),
+      });
     } catch (error: any) {
       ctx.throw(error.message, 404);
     }

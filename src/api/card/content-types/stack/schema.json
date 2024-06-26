@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "stacks",
+  "info": {
+    "singularName": "stack",
+    "pluralName": "stacks",
+    "displayName": "Stack",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "userId": {
+      "type": "integer"
+    },
+    "time": {
+      "type": "datetime"
+    }
+  }
+}

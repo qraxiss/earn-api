@@ -371,7 +371,7 @@ export interface ApiCardCard extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String;
@@ -382,10 +382,98 @@ export interface ApiCardCard extends Schema.CollectionType {
     pricePercentageStart: Attribute.Float;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCardOwnedCard extends Schema.CollectionType {
+  collectionName: 'owned_cards';
+  info: {
+    singularName: 'owned-card';
+    pluralName: 'owned-cards';
+    displayName: 'Owned Card';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    card: Attribute.Relation<
+      'api::card.owned-card',
+      'oneToOne',
+      'api::card.card'
+    >;
+    level: Attribute.Integer & Attribute.DefaultTo<0>;
+    userId: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::card.owned-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::card.owned-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCardStack extends Schema.CollectionType {
+  collectionName: 'stacks';
+  info: {
+    singularName: 'stack';
+    pluralName: 'stacks';
+    displayName: 'Stack';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    userId: Attribute.Integer;
+    time: Attribute.DateTime;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::card.stack',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::card.stack',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiXpXp extends Schema.CollectionType {
+  collectionName: 'xps';
+  info: {
+    singularName: 'xp';
+    pluralName: 'xps';
+    displayName: 'XP';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    point: Attribute.Float;
+    userId: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::xp.xp', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::xp.xp', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -827,6 +915,9 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'api::card.card': ApiCardCard;
+      'api::card.owned-card': ApiCardOwnedCard;
+      'api::card.stack': ApiCardStack;
+      'api::xp.xp': ApiXpXp;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;

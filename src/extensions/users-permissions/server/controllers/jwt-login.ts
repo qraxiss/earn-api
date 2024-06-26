@@ -9,7 +9,6 @@ export default async (ctx, next) => {
 
   try {
     const { id } = JWT.verify(jwt, jwtSecret) as JwtPayload;
-    console.log(id);
     try {
       await info(id);
     } catch (error: any) {

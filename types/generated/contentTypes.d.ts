@@ -865,6 +865,7 @@ export interface ApiCardStack extends Schema.CollectionType {
   attributes: {
     userId: Attribute.Integer;
     time: Attribute.DateTime;
+    earnPerHour: Attribute.Float & Attribute.DefaultTo<0>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

@@ -16,6 +16,10 @@
     },
     "time": {
       "type": "datetime"
+    },
+    "earnPerHour": {
+      "type": "float",
+      "default": 0
     }
   }
 }

@@ -14,13 +14,16 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         `Your mining still ongoing. ${status.remainTime} seconds left!`
       );
     }
-
+    const earnPerHour = await strapi
+      .service("api::card.level")
+      .calculateEarnPerHour(userId);
     const updatedStack = await strapi.db.query("api::card.stack").update({
       where: {
         userId,
       },
       data: {
         time: new Date(),
+        earnPerHour,
       },
     });
 
@@ -48,6 +51,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         canStartMining: true,
         isWaiting: false,
         remainTime: null,
+        earnPerHour: stack.earnPerHour,
       };
     }
 
@@ -61,6 +65,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         canStartMining: false,
         isWaiting: true,
         remainTime,
+        earnPerHour: stack.earnPerHour,
       };
     } else {
       return {
@@ -68,6 +73,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         canStartMining: false,
         isWaiting: false,
         remainTime: null,
+        earnPerHour: stack.earnPerHour,
       };
     }
   },

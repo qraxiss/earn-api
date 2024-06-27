@@ -19,8 +19,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       );
     }
     const days = await strapi.db.query("api::daily.daily-reward").findMany();
-    let { day } = daily;
-    day = day == days.length ? 1 : day;
+    const { day } = daily;
 
     const reward = days.find((reward) => reward.day == day);
     await strapi.db.query("api::daily.daily").update({
@@ -28,7 +27,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         userId,
       },
       data: {
-        day: day + 1,
+        day: day == days.length ? 1 : day + 1,
         claim: new Date(),
       },
     });
@@ -43,7 +42,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       .service("api::daily.daily")
       .findDailyfromUserId(userId);
 
-    if (daily.day == 1) {
+    if (!daily.claim) {
       return {
         canClaim: true,
         streak: false,

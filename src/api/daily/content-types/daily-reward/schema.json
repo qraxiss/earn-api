@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "xps",
+  "collectionName": "daily_rewards",
   "info": {
-    "singularName": "xp",
-    "pluralName": "xps",
-    "displayName": "XP",
+    "singularName": "daily-reward",
+    "pluralName": "daily-rewards",
+    "displayName": "Daily Reward",
     "description": ""
   },
   "options": {
@@ -12,11 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "point": {
-      "type": "float",
-      "default": 0
+    "day": {
+      "type": "integer"
     },
-    "userId": {
+    "reward": {
       "type": "integer"
     }
   }

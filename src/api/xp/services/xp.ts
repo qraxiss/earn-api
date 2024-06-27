@@ -42,7 +42,7 @@ const services = ({ strapi }: { strapi: Strapi }) => ({
       throw new Error("Balance is not enough!");
     }
 
-    await this.decrease(xp.id, price);
+    await await strapi.service("api::xp.xp").decrease(xp.id, price);
   },
 });
 

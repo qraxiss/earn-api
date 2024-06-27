@@ -73,8 +73,6 @@ export default {
       .service("api::card.owned-card")
       .findOwnedCard(cardId, userId);
 
-    console.log(ownedCard);
-
     try {
       await strapi.service("api::xp.xp").purchase(userId, ownedCard.card.price);
     } catch (error: any) {

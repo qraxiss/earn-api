@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dailies",
+  "info": {
+    "singularName": "daily",
+    "pluralName": "dailies",
+    "displayName": "Daily",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "day": {
+      "type": "integer",
+      "default": 1
+    },
+    "userId": {
+      "type": "integer"
+    },
+    "claim": {
+      "type": "datetime"
+    }
+  }
+}

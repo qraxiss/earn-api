@@ -362,122 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiCardCard extends Schema.CollectionType {
-  collectionName: 'cards';
-  info: {
-    singularName: 'card';
-    pluralName: 'cards';
-    displayName: 'Card';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    name: Attribute.String;
-    price: Attribute.Float;
-    profit: Attribute.Float;
-    pricePercentage: Attribute.Float;
-    profitPercentage: Attribute.Float;
-    pricePercentageStart: Attribute.Float;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiCardOwnedCard extends Schema.CollectionType {
-  collectionName: 'owned_cards';
-  info: {
-    singularName: 'owned-card';
-    pluralName: 'owned-cards';
-    displayName: 'Owned Card';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    card: Attribute.Relation<
-      'api::card.owned-card',
-      'oneToOne',
-      'api::card.card'
-    >;
-    level: Attribute.Integer & Attribute.DefaultTo<0>;
-    userId: Attribute.Integer;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::card.owned-card',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::card.owned-card',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiCardStack extends Schema.CollectionType {
-  collectionName: 'stacks';
-  info: {
-    singularName: 'stack';
-    pluralName: 'stacks';
-    displayName: 'Stack';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    userId: Attribute.Integer;
-    time: Attribute.DateTime;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::card.stack',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::card.stack',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiXpXp extends Schema.CollectionType {
-  collectionName: 'xps';
-  info: {
-    singularName: 'xp';
-    pluralName: 'xps';
-    displayName: 'XP';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    point: Attribute.Float;
-    userId: Attribute.Integer;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::xp.xp', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::xp.xp', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -904,6 +788,186 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiCardCard extends Schema.CollectionType {
+  collectionName: 'cards';
+  info: {
+    singularName: 'card';
+    pluralName: 'cards';
+    displayName: 'Card';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    price: Attribute.Float;
+    profit: Attribute.Float;
+    pricePercentage: Attribute.Float;
+    profitPercentage: Attribute.Float;
+    pricePercentageStart: Attribute.Float;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCardOwnedCard extends Schema.CollectionType {
+  collectionName: 'owned_cards';
+  info: {
+    singularName: 'owned-card';
+    pluralName: 'owned-cards';
+    displayName: 'Owned Card';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    card: Attribute.Relation<
+      'api::card.owned-card',
+      'oneToOne',
+      'api::card.card'
+    >;
+    level: Attribute.Integer & Attribute.DefaultTo<0>;
+    userId: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::card.owned-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::card.owned-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCardStack extends Schema.CollectionType {
+  collectionName: 'stacks';
+  info: {
+    singularName: 'stack';
+    pluralName: 'stacks';
+    displayName: 'Stack';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    userId: Attribute.Integer;
+    time: Attribute.DateTime;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::card.stack',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::card.stack',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDailyDaily extends Schema.CollectionType {
+  collectionName: 'dailies';
+  info: {
+    singularName: 'daily';
+    pluralName: 'dailies';
+    displayName: 'Daily';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    day: Attribute.Integer & Attribute.DefaultTo<1>;
+    userId: Attribute.Integer;
+    claim: Attribute.DateTime;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::daily.daily',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::daily.daily',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDailyDailyReward extends Schema.CollectionType {
+  collectionName: 'daily_rewards';
+  info: {
+    singularName: 'daily-reward';
+    pluralName: 'daily-rewards';
+    displayName: 'Daily Reward';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    day: Attribute.Integer;
+    reward: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::daily.daily-reward',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::daily.daily-reward',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiXpXp extends Schema.CollectionType {
+  collectionName: 'xps';
+  info: {
+    singularName: 'xp';
+    pluralName: 'xps';
+    displayName: 'XP';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    point: Attribute.Float & Attribute.DefaultTo<0>;
+    userId: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::xp.xp', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::xp.xp', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -914,10 +978,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::card.card': ApiCardCard;
-      'api::card.owned-card': ApiCardOwnedCard;
-      'api::card.stack': ApiCardStack;
-      'api::xp.xp': ApiXpXp;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -926,6 +986,12 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::card.card': ApiCardCard;
+      'api::card.owned-card': ApiCardOwnedCard;
+      'api::card.stack': ApiCardStack;
+      'api::daily.daily': ApiDailyDaily;
+      'api::daily.daily-reward': ApiDailyDailyReward;
+      'api::xp.xp': ApiXpXp;
     }
   }
 }

@@ -53,7 +53,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
 
     const stackTime = moment(stack.time);
     const currentTime = moment();
-    const remainTime = 3 * 4 - currentTime.diff(stackTime, "seconds");
+    const remainTime = 10 - currentTime.diff(stackTime, "seconds");
 
     if (remainTime >= 0) {
       return {

@@ -946,6 +946,37 @@ export interface ApiDailyDailyReward extends Schema.CollectionType {
   };
 }
 
+export interface ApiReferrerReferrer extends Schema.CollectionType {
+  collectionName: 'referrers';
+  info: {
+    singularName: 'referrer';
+    pluralName: 'referrers';
+    displayName: 'Referrer';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    userId: Attribute.Integer;
+    referenceCodeRegistered: Attribute.String;
+    referenceCode: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::referrer.referrer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::referrer.referrer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiXpXp extends Schema.CollectionType {
   collectionName: 'xps';
   info: {
@@ -992,6 +1023,7 @@ declare module '@strapi/types' {
       'api::card.stack': ApiCardStack;
       'api::daily.daily': ApiDailyDaily;
       'api::daily.daily-reward': ApiDailyDailyReward;
+      'api::referrer.referrer': ApiReferrerReferrer;
       'api::xp.xp': ApiXpXp;
     }
   }

@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "referrers",
+  "info": {
+    "singularName": "referrer",
+    "pluralName": "referrers",
+    "displayName": "Referrer"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "userId": {
+      "type": "integer"
+    },
+    "referenceCodeRegistered": {
+      "type": "string"
+    },
+    "referenceCode": {
+      "type": "string"
+    }
+  }
+}

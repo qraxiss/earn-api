@@ -85,4 +85,16 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       },
     });
   },
+
+  async referrerCount(userId) {
+    const refer = await strapi
+      .service("api::referrer.referrer")
+      .findReferrerByUserId(userId);
+
+    return await strapi.db.query("api::referrer.referrer").count({
+      where: {
+        referenceCodeRegistered: refer.referenceCode,
+      },
+    });
+  },
 });

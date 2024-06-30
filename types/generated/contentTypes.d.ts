@@ -801,16 +801,58 @@ export interface ApiCardCard extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    price: Attribute.Float;
-    profit: Attribute.Float;
+    price: Attribute.Integer;
+    profit: Attribute.Integer;
     pricePercentage: Attribute.Float;
     profitPercentage: Attribute.Float;
     pricePercentageStart: Attribute.Float;
+    category: Attribute.Relation<
+      'api::card.card',
+      'manyToOne',
+      'api::card.card-category'
+    >;
+    image: Attribute.Media<'images'>;
+    referrerCount: Attribute.Integer & Attribute.DefaultTo<0>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCardCardCategory extends Schema.CollectionType {
+  collectionName: 'card_categories';
+  info: {
+    singularName: 'card-category';
+    pluralName: 'card-categories';
+    displayName: 'Card Category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    cards: Attribute.Relation<
+      'api::card.card-category',
+      'oneToMany',
+      'api::card.card'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::card.card-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::card.card-category',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -832,7 +874,7 @@ export interface ApiCardOwnedCard extends Schema.CollectionType {
       'oneToOne',
       'api::card.card'
     >;
-    level: Attribute.Integer & Attribute.DefaultTo<0>;
+    level: Attribute.Integer & Attribute.DefaultTo<1>;
     userId: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1042,7 +1084,7 @@ export interface ApiXpXp extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    point: Attribute.Float & Attribute.DefaultTo<0>;
+    point: Attribute.Integer & Attribute.DefaultTo<0>;
     userId: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1072,6 +1114,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::card.card': ApiCardCard;
+      'api::card.card-category': ApiCardCardCategory;
       'api::card.owned-card': ApiCardOwnedCard;
       'api::card.stack': ApiCardStack;
       'api::daily.daily': ApiDailyDaily;

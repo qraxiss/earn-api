@@ -2,17 +2,17 @@ export default {
   routes: [
     {
       method: "GET",
-      path: "/owned-card/owned-cards",
+      path: "/card/owned-cards",
       handler: "owned-card.ownedCards",
     },
     {
       method: "POST",
-      path: "/owned-card/buy-card",
+      path: "/card/buy",
       handler: "owned-card.buyCard",
     },
     {
       method: "POST",
-      path: "/owned-card/upgrade-card",
+      path: "/card/upgrade",
       handler: "owned-card.upgradeCard",
     },
   ],

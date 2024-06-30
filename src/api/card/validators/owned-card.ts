@@ -1,13 +1,13 @@
 import Joi from "joi";
 
 export default {
-  "/owned-card/owned-cards": {
+  "/card/owned-cards": {
     input: null,
     output: null,
     query: null,
   },
 
-  "/owned-card/buy-card": {
+  "/card/buy": {
     input: Joi.object({
       cardId: Joi.number().required(),
     }),
@@ -15,7 +15,7 @@ export default {
     query: null,
   },
 
-  "/owned-card/upgrade-card": {
+  "/card/upgrade": {
     input: Joi.object({
       cardId: Joi.number().required(),
     }),

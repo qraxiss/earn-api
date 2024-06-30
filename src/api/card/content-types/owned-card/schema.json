@@ -19,7 +19,7 @@
     },
     "level": {
       "type": "integer",
-      "default": 0
+      "default": 1
     },
     "userId": {
       "type": "integer"

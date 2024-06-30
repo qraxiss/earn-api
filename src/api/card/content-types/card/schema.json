@@ -16,10 +16,10 @@
       "type": "string"
     },
     "price": {
-      "type": "float"
+      "type": "integer"
     },
     "profit": {
-      "type": "float"
+      "type": "integer"
     },
     "pricePercentage": {
       "type": "float"
@@ -29,6 +29,24 @@
     },
     "pricePercentageStart": {
       "type": "float"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::card.card-category",
+      "inversedBy": "cards"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "referrerCount": {
+      "type": "integer",
+      "default": 0
     }
   }
 }

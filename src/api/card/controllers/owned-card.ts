@@ -73,8 +73,13 @@ export default {
       .service("api::card.owned-card")
       .findOwnedCard(cardId, userId);
 
+    // calculate next level price
+    const nextLevelCard = strapi
+      .service("api::card.level")
+      .continueCalculate(ownedCard.card, ownedCard.level, 1);
+
     try {
-      await strapi.service("api::xp.xp").purchase(userId, ownedCard.card.price);
+      await strapi.service("api::xp.xp").purchase(userId, nextLevelCard.price);
     } catch (error: any) {
       ctx.throw(
         error.message,

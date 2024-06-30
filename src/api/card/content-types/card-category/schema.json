@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "card_categories",
+  "info": {
+    "singularName": "card-category",
+    "pluralName": "card-categories",
+    "displayName": "Card Category",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "cards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::card.card",
+      "mappedBy": "category"
+    }
+  }
+}

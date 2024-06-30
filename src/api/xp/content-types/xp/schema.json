@@ -13,7 +13,7 @@
   "pluginOptions": {},
   "attributes": {
     "point": {
-      "type": "float",
+      "type": "integer",
       "default": 0
     },
     "userId": {

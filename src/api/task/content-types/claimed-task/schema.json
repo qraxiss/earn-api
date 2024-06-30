@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "claimed_tasks",
+  "info": {
+    "singularName": "claimed-task",
+    "pluralName": "claimed-tasks",
+    "displayName": "Claimed Task"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "userId": {
+      "type": "integer"
+    },
+    "taskId": {
+      "type": "integer"
+    }
+  }
+}

@@ -977,6 +977,59 @@ export interface ApiReferrerReferrer extends Schema.CollectionType {
   };
 }
 
+export interface ApiTaskClaimedTask extends Schema.CollectionType {
+  collectionName: 'claimed_tasks';
+  info: {
+    singularName: 'claimed-task';
+    pluralName: 'claimed-tasks';
+    displayName: 'Claimed Task';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    userId: Attribute.Integer;
+    taskId: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::task.claimed-task',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::task.claimed-task',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTaskTask extends Schema.CollectionType {
+  collectionName: 'tasks';
+  info: {
+    singularName: 'task';
+    pluralName: 'tasks';
+    displayName: 'Task';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String;
+    reward: Attribute.Float;
+    icon: Attribute.Media<'images'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::task.task', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::task.task', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiXpXp extends Schema.CollectionType {
   collectionName: 'xps';
   info: {
@@ -1024,6 +1077,8 @@ declare module '@strapi/types' {
       'api::daily.daily': ApiDailyDaily;
       'api::daily.daily-reward': ApiDailyDailyReward;
       'api::referrer.referrer': ApiReferrerReferrer;
+      'api::task.claimed-task': ApiTaskClaimedTask;
+      'api::task.task': ApiTaskTask;
       'api::xp.xp': ApiXpXp;
     }
   }

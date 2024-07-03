@@ -7,13 +7,7 @@ export default [
   "strapi::query",
   "strapi::body",
   "global::validator",
-  {
-    name: "strapi::session",
-    config: {
-      secure: false,
-      httpOnly: false,
-    },
-  },
+  "strapi::session",
   "strapi::favicon",
   "strapi::public",
 ];

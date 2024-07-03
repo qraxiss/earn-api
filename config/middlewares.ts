@@ -14,7 +14,6 @@ export default [
       httpOnly: false,
     },
   },
-  ,
   "strapi::favicon",
   "strapi::public",
 ];

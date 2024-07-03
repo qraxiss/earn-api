@@ -22,13 +22,16 @@
       "type": "integer"
     },
     "pricePercentage": {
-      "type": "float"
+      "type": "float",
+      "default": 7
     },
     "profitPercentage": {
-      "type": "float"
+      "type": "float",
+      "default": 7
     },
     "pricePercentageStart": {
-      "type": "float"
+      "type": "float",
+      "default": 10.25
     },
     "category": {
       "type": "relation",

@@ -23,15 +23,16 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           .continueCalculate(ownedCard.card, ownedCard.level, 1);
 
         return {
-          id: ownedCard.card.id,
           status: {
             buyed: true,
             level: ownedCard.level,
-            totalProfit: Math.round(ownedCard.card.totalProfit),
           },
           info: {
             name: ownedCard.card.name,
             image: process.env.URL + card.image?.url,
+            id: ownedCard.card.id,
+            category: ownedCard.card.category.name,
+            totalProfit: Math.round(ownedCard.card.totalProfit),
           },
           upgrade: {
             price: Math.round(calculatedCard.price),
@@ -42,13 +43,14 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       }
 
       const locked = card.referrerCount > referrerCount;
-
+      console.log(card);
       return {
-        id: card.id,
         info: {
           name: card.name,
           image: process.env.URL + card.image?.url,
           totalProfit: 0,
+          id: card.id,
+          category: card.category.name,
         },
         status: {
           level: 0,

@@ -7,7 +7,11 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         userId,
       },
       populate: {
-        card: "*",
+        card: {
+          populate: {
+            category: "*",
+          },
+        },
       },
     });
 

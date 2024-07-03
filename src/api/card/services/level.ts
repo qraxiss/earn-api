@@ -84,7 +84,7 @@ export default () => ({
     let earnPerHour = 0;
 
     ownedCards.forEach((ownedCard) => {
-      earnPerHour += ownedCard.card.profit;
+      earnPerHour += ownedCard.card.totalProfit;
     });
 
     return earnPerHour;

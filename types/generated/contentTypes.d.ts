@@ -803,9 +803,9 @@ export interface ApiCardCard extends Schema.CollectionType {
     name: Attribute.String;
     price: Attribute.Integer;
     profit: Attribute.Integer;
-    pricePercentage: Attribute.Float;
-    profitPercentage: Attribute.Float;
-    pricePercentageStart: Attribute.Float;
+    pricePercentage: Attribute.Float & Attribute.DefaultTo<7>;
+    profitPercentage: Attribute.Float & Attribute.DefaultTo<7>;
+    pricePercentageStart: Attribute.Float & Attribute.DefaultTo<10.25>;
     category: Attribute.Relation<
       'api::card.card',
       'manyToOne',

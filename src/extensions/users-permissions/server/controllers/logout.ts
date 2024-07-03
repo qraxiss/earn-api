@@ -1,9 +1,9 @@
 export default async (ctx) => {
   ctx.session = {};
 
-  ctx.body = {
+  ctx.send({
     data: {
       status: true,
     },
-  };
+  });
 };

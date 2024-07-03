@@ -25,15 +25,15 @@ export default (config, { strapi }: { strapi: Strapi }) => {
       ctx.request.body = value;
     }
 
-    if (validator.output) {
-      const { error, value } = validate(ctx.body, validator.output);
+    // if (validator.output) {
+    //   const { error, value } = validate(ctx.body, validator.output);
 
-      if (error) {
-        ctx.throw(error.message, 400);
-      }
+    //   if (error) {
+    //     ctx.throw(error.message, 400);
+    //   }
 
-      ctx.body = value;
-    }
+    //   ctx.body = value;
+    // }
 
     await next();
   };

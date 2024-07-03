@@ -15,11 +15,11 @@ export default async (ctx, next) => {
       ctx.throw(error.response.data.error.message, 403);
     }
     ctx.session = { id };
-    ctx.body = {
+    ctx.send({
       data: {
-        success: true,
+        status: true,
       },
-    };
+    });
   } catch (error: any) {
     ctx.throw(error.message, 403);
   }

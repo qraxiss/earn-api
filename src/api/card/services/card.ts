@@ -23,6 +23,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           .continueCalculate(ownedCard.card, ownedCard.level, 1);
 
         return {
+          id: ownedCard.card.id,
           status: {
             buyed: true,
             level: ownedCard.level,
@@ -43,6 +44,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       const locked = card.referrerCount > referrerCount;
 
       return {
+        id: card.id,
         info: {
           name: card.name,
           image: process.env.URL + card.image?.url,

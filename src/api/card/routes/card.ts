@@ -2,7 +2,7 @@ export default {
   routes: [
     {
       method: "GET",
-      path: "/cards",
+      path: "/card",
       handler: "card.cards",
     },
   ],

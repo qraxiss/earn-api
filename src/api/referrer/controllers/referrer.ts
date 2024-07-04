@@ -4,7 +4,7 @@
 
 export default {
   async referrerCode(ctx) {
-    const { id: userId } = ctx.session;
+    const { id: userId } = ctx.state.user;
 
     let data;
     try {
@@ -22,7 +22,7 @@ export default {
   },
 
   async referrerUser(ctx) {
-    const { id: userId } = ctx.session;
+    const { id: userId } = ctx.state.user;
     const { referrerCode } = ctx.request.body;
 
     let data;
@@ -40,7 +40,7 @@ export default {
   },
 
   async findReferrers(ctx) {
-    const { id: userId } = ctx.session;
+    const { id: userId } = ctx.state.user;
 
     let data;
     try {

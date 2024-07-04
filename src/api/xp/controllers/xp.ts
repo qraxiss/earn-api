@@ -4,7 +4,7 @@
 
 export default {
   async xp(ctx) {
-    const { id: userId } = ctx.session;
+    const { id: userId } = ctx.state.user;
     let data;
     try {
       const { point } = await strapi.service("api::xp.xp").findPoint(userId);

@@ -1,6 +1,6 @@
 export default {
   async ownedCards(ctx) {
-    const { id } = ctx.session;
+    const { id } = ctx.state.user;
 
     let data;
     try {
@@ -22,7 +22,7 @@ export default {
 
   async buyCard(ctx) {
     const { cardId } = ctx.request.body;
-    const { id: userId } = ctx.session;
+    const { id: userId } = ctx.state.user;
 
     const isUserOwnedAlready = await strapi
       .service("api::card.owned-card")
@@ -60,7 +60,7 @@ export default {
 
   async upgradeCard(ctx) {
     const { cardId } = ctx.request.body;
-    const { id: userId } = ctx.session;
+    const { id: userId } = ctx.state.user;
 
     const isUserOwnedAlready = await strapi
       .service("api::card.owned-card")

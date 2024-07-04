@@ -1,6 +1,8 @@
+import { Context } from "koa";
+
 export default {
-  async cards(ctx) {
-    const { id: userId } = ctx.session;
+  async cards(ctx: Context) {
+    const { id: userId } = ctx.state.user;
 
     let data;
     try {

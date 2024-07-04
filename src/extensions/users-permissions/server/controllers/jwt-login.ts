@@ -1,7 +1,8 @@
 import JWT, { JwtPayload } from "jsonwebtoken";
 import { info } from "../../../../services/auth";
+import { Context } from "koa";
 
-export default async (ctx, next) => {
+export default async (ctx: Context, next) => {
   const { jwt } = ctx.request.body;
   const jwtSecret = strapi.config.get(
     "plugin.users-permissions.jwtSecret"

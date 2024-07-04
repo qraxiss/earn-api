@@ -28,36 +28,45 @@ interface Config {
 
 const authenticate = async (ctx: Context): Promise<Auth> => {
   try {
-    const { id } = ctx.session;
-    if (id) {
-      // Invalid token
-      if (!id) {
-        return { authenticated: false, credentials: null, ability: null };
-      }
+    const token = await strapi
+      .plugin("users-permissions")
+      .service("jwt")
+      .getToken(ctx);
 
-      const { user, permissions } = await info(id);
+    if (token) {
+      const { id } = token;
+      if (id) {
+        // Invalid token
+        if (!id) {
+          return { authenticated: false, credentials: null, ability: null };
+        }
 
-      // No user associated with the token
-      if (!user) {
+        const { user, permissions } = await info(id);
+
+        // No user associated with the token
+        if (!user) {
+          return {
+            authenticated: false,
+            credentials: null,
+            ability: null,
+            error: "Invalid credentials",
+          };
+        }
+
+        // Generate an ability (content API engine) based on the given permissions
+        const ability =
+          await strapi.contentAPI.permissions.engine.generateAbility(
+            permissions
+          );
+
+        ctx.state.user = user;
+
         return {
-          authenticated: false,
-          credentials: null,
-          ability: null,
-          error: "Invalid credentials",
+          authenticated: true,
+          credentials: user,
+          ability,
         };
       }
-
-      // Generate an ability (content API engine) based on the given permissions
-      const ability =
-        await strapi.contentAPI.permissions.engine.generateAbility(permissions);
-
-      ctx.state.user = user;
-
-      return {
-        authenticated: true,
-        credentials: user,
-        ability,
-      };
     }
 
     const publicPermissions = await getPublicPermissions();

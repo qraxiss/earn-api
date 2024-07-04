@@ -4,7 +4,7 @@
 
 export default {
   async status(ctx) {
-    const { id: userId } = ctx.session;
+    const { id: userId } = ctx.state.user;
 
     let data;
     try {
@@ -19,7 +19,7 @@ export default {
   },
 
   async claim(ctx) {
-    const { id: userId } = ctx.session;
+    const { id: userId } = ctx.state.user;
     const { taskId } = ctx.request.body;
 
     let data;

@@ -4,7 +4,7 @@
 
 export default {
   async status(ctx) {
-    const { id: userId } = ctx.session;
+    const { id: userId } = ctx.state.user;
     let data;
     try {
       data = await strapi.service("api::card.stack").status(userId);
@@ -17,7 +17,7 @@ export default {
     });
   },
   async start(ctx) {
-    const { id: userId } = ctx.session;
+    const { id: userId } = ctx.state.user;
     let data;
     try {
       data = await strapi.service("api::card.stack").start(userId);
@@ -29,7 +29,7 @@ export default {
     });
   },
   async claim(ctx) {
-    const { id: userId } = ctx.session;
+    const { id: userId } = ctx.state.user;
     let data;
     try {
       data = await strapi.service("api::card.stack").claim(userId);

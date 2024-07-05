@@ -25,7 +25,7 @@ export default {
       ctx.throw(error.message, 400);
     }
     ctx.send({
-      data,
+      data: await strapi.service("api::card.stack").status(userId),
     });
   },
   async claim(ctx) {
@@ -37,7 +37,7 @@ export default {
       ctx.throw(error.message, 400);
     }
     ctx.send({
-      data,
+      data: await strapi.service("api::card.stack").status(userId),
     });
   },
 };

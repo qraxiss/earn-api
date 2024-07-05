@@ -43,7 +43,6 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       }
 
       const locked = card.referrerCount > referrerCount;
-      console.log(card);
       return {
         info: {
           name: card.name,

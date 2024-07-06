@@ -1055,6 +1055,7 @@ export interface ApiTaskTask extends Schema.CollectionType {
     singularName: 'task';
     pluralName: 'tasks';
     displayName: 'Task';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -1063,6 +1064,7 @@ export interface ApiTaskTask extends Schema.CollectionType {
     title: Attribute.String;
     reward: Attribute.Float;
     icon: Attribute.Media<'images'>;
+    link: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::task.task', 'oneToOne', 'admin::user'> &

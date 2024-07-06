@@ -30,7 +30,7 @@ export default {
     }
 
     ctx.send({
-      data,
+      data: await strapi.service("api::task.task").allStatus(userId),
     });
   },
 };

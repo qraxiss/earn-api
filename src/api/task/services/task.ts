@@ -39,7 +39,11 @@ export default ({ strapi }: { strapi: Strapi }) => ({
 
     return {
       isClaimed,
-      task: await strapi.entityService.findOne("api::task.task", taskId),
+      task: await strapi.entityService.findOne("api::task.task", taskId, {
+        populate: {
+          icon: true,
+        },
+      }),
     };
   },
 

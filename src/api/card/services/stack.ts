@@ -74,8 +74,8 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         canClaim: true,
         canStartMining: false,
         isWaiting: false,
-        remainTime: null,
-        pastTime: null,
+        remainTime,
+        pastTime,
         earnPerHour: stack.earnPerHour,
       };
     }

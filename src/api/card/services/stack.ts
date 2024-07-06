@@ -57,7 +57,8 @@ export default ({ strapi }: { strapi: Strapi }) => ({
 
     const stackTime = moment(stack.time);
     const currentTime = moment();
-    const remainTime = 10 - currentTime.diff(stackTime, "seconds");
+    const pastTime = currentTime.diff(stackTime, "seconds");
+    const remainTime = 3600 * 4 - pastTime;
 
     if (remainTime >= 0) {
       return {
@@ -65,6 +66,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         canStartMining: false,
         isWaiting: true,
         remainTime,
+        pastTime,
         earnPerHour: stack.earnPerHour,
       };
     } else {
@@ -73,6 +75,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         canStartMining: false,
         isWaiting: false,
         remainTime: null,
+        pastTime: null,
         earnPerHour: stack.earnPerHour,
       };
     }

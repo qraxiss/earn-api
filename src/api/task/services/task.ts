@@ -3,6 +3,8 @@
  */
 
 import { Strapi } from "@strapi/strapi";
+import { config } from "dotenv";
+config();
 
 export default ({ strapi }: { strapi: Strapi }) => ({
   async claim(userId, taskId) {
@@ -36,14 +38,15 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       },
     });
     const isClaimed = !!claimedTask;
-
+    const task = await strapi.entityService.findOne("api::task.task", taskId, {
+      populate: {
+        icon: true,
+      },
+    });
+    const icon = process.env.URL + task.icon?.url;
     return {
       isClaimed,
-      task: await strapi.entityService.findOne("api::task.task", taskId, {
-        populate: {
-          icon: true,
-        },
-      }),
+      task: { ...task, icon },
     };
   },
 

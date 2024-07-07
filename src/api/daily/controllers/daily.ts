@@ -12,7 +12,7 @@ export default {
       ctx.throw(error.message, 400);
     }
     ctx.send({
-      data,
+      data: await strapi.service("api::daily.daily").status(userId),
     });
   },
 

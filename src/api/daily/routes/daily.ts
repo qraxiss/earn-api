@@ -14,5 +14,10 @@ export default {
       path: "/daily/status",
       handler: "daily.status",
     },
+    {
+      method: "GET",
+      path: "/daily/days",
+      handler: "daily.days",
+    },
   ],
 };

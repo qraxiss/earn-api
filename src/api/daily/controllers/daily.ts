@@ -29,4 +29,17 @@ export default {
       data,
     });
   },
+
+  async days(ctx) {
+    let data;
+    try {
+      data = await strapi.service("api::daily.daily-reward").findOrderedDays();
+    } catch (error: any) {
+      ctx.throw(error.message, 400);
+    }
+
+    ctx.send({
+      data,
+    });
+  },
 };

@@ -21,14 +21,14 @@ const services = ({ strapi }: { strapi: Strapi }) => ({
   async findPoint(userId: number) {
     let xp = await strapi.db.query("api::xp.xp").findOne({
       where: {
-        userId,
+        user: userId,
       },
     });
 
     if (!xp) {
       xp = await strapi.entityService.create("api::xp.xp", {
         data: {
-          userId,
+          user: userId,
         },
       });
     }

@@ -4,21 +4,34 @@
   "info": {
     "singularName": "referrer",
     "pluralName": "referrers",
-    "displayName": "Referrer"
+    "displayName": "Referrer",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "userId": {
-      "type": "integer"
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::telegram.telegram-user",
+      "inversedBy": "referrer"
     },
-    "referenceCodeRegistered": {
-      "type": "string"
+    "referrers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::referrer.referrer",
+      "mappedBy": "referrer"
+    },
+    "referrer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::referrer.referrer",
+      "inversedBy": "referrers"
     },
     "referenceCode": {
-      "type": "string"
+      "type": "integer"
     }
   }
 }

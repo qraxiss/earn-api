@@ -29,10 +29,6 @@
       "type": "string",
       "unique": true
     },
-    "start_param": {
-      "type": "string",
-      "required": false
-    },
     "cards": {
       "type": "relation",
       "relation": "oneToMany",
@@ -55,6 +51,18 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::card.stack",
+      "mappedBy": "user"
+    },
+    "xp": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::xp.xp",
+      "mappedBy": "user"
+    },
+    "referrer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::referrer.referrer",
       "mappedBy": "user"
     }
   }

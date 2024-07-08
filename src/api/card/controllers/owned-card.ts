@@ -47,7 +47,7 @@ export default {
       "api::card.owned-card",
       {
         data: {
-          userId,
+          user: userId,
           card: card.id,
         },
       }

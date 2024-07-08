@@ -24,7 +24,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     const reward = days.find((reward) => reward.day == day);
     await strapi.db.query("api::daily.daily").update({
       where: {
-        userId,
+        user: userId,
       },
       data: {
         day: day == days.length ? 1 : day + 1,
@@ -98,14 +98,14 @@ export default ({ strapi }: { strapi: Strapi }) => ({
   async findDailyfromUserId(userId) {
     let daily = await strapi.db.query("api::daily.daily").findOne({
       where: {
-        userId,
+        user: userId,
       },
     });
 
     if (!daily) {
       daily = await strapi.entityService.create("api::daily.daily", {
         data: {
-          userId,
+          user: userId,
         },
       });
     }

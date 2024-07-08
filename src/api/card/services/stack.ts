@@ -19,7 +19,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       .calculateEarnPerHour(userId);
     const updatedStack = await strapi.db.query("api::card.stack").update({
       where: {
-        userId,
+        user: userId,
       },
       data: {
         time: new Date(),
@@ -33,14 +33,14 @@ export default ({ strapi }: { strapi: Strapi }) => ({
   async status(userId) {
     let stack = await strapi.db.query("api::card.stack").findOne({
       where: {
-        userId,
+        user: userId,
       },
     });
 
     if (!stack) {
       stack = strapi.entityService.create("api::card.stack", {
         data: {
-          userId,
+          user: userId,
         },
       });
     }
@@ -96,7 +96,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
 
     const updatedStack = await strapi.db.query("api::card.stack").update({
       where: {
-        userId,
+        user: userId,
       },
       data: {
         time: null,

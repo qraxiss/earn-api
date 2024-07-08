@@ -1009,14 +1009,28 @@ export interface ApiReferrerReferrer extends Schema.CollectionType {
     singularName: 'referrer';
     pluralName: 'referrers';
     displayName: 'Referrer';
+    description: '';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
-    userId: Attribute.Integer;
-    referenceCodeRegistered: Attribute.String;
-    referenceCode: Attribute.String;
+    user: Attribute.Relation<
+      'api::referrer.referrer',
+      'oneToOne',
+      'api::telegram.telegram-user'
+    >;
+    referrers: Attribute.Relation<
+      'api::referrer.referrer',
+      'oneToMany',
+      'api::referrer.referrer'
+    >;
+    referrer: Attribute.Relation<
+      'api::referrer.referrer',
+      'manyToOne',
+      'api::referrer.referrer'
+    >;
+    referenceCode: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1116,7 +1130,6 @@ export interface ApiTelegramTelegramUser extends Schema.CollectionType {
     first_name: Attribute.String;
     last_name: Attribute.String;
     telegram_id: Attribute.String & Attribute.Unique;
-    start_param: Attribute.String;
     cards: Attribute.Relation<
       'api::telegram.telegram-user',
       'oneToMany',
@@ -1136,6 +1149,16 @@ export interface ApiTelegramTelegramUser extends Schema.CollectionType {
       'api::telegram.telegram-user',
       'oneToOne',
       'api::card.stack'
+    >;
+    xp: Attribute.Relation<
+      'api::telegram.telegram-user',
+      'oneToOne',
+      'api::xp.xp'
+    >;
+    referrer: Attribute.Relation<
+      'api::telegram.telegram-user',
+      'oneToOne',
+      'api::referrer.referrer'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1168,6 +1191,11 @@ export interface ApiXpXp extends Schema.CollectionType {
   attributes: {
     point: Attribute.Integer & Attribute.DefaultTo<0>;
     userId: Attribute.Integer;
+    user: Attribute.Relation<
+      'api::xp.xp',
+      'oneToOne',
+      'api::telegram.telegram-user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::xp.xp', 'oneToOne', 'admin::user'> &

@@ -18,6 +18,12 @@
     },
     "userId": {
       "type": "integer"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::telegram.telegram-user",
+      "inversedBy": "xp"
     }
   }
 }

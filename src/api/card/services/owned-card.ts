@@ -4,7 +4,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
   async findManyOwnedCardFromUserId(userId) {
     const ownedCards = await strapi.db.query("api::card.owned-card").findMany({
       where: {
-        userId,
+        user: userId,
       },
       populate: {
         card: {
@@ -24,7 +24,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     return !!(await strapi.db.query("api::card.owned-card").findOne({
       where: {
         card: cardId,
-        userId,
+        user: userId,
       },
     }));
   },
@@ -33,7 +33,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     const ownedCard = await strapi.db.query("api::card.owned-card").findOne({
       where: {
         card: cardId,
-        userId,
+        user: userId,
       },
       populate: {
         card: "*",

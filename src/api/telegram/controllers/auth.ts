@@ -19,6 +19,7 @@ export default {
           },
         });
 
+      //register
       if (!localTelegramUser) {
         localTelegramUser = await strapi.db
           .query("api::telegram.telegram-user")
@@ -26,13 +27,30 @@ export default {
             data: telegramUser,
           });
 
-        localTelegramUser = await strapi.db
-          .query("api::telegram.telegram-user")
-          .findOne({
-            where: {
-              username: telegramUser.username,
+        const [xp, stack, referrer] = await Promise.all([
+          strapi.entityService.create("api::xp.xp", {
+            data: {
+              user: localTelegramUser.id,
             },
-          });
+          }),
+
+          strapi.entityService.create("api::card.stack", {
+            data: {
+              user: localTelegramUser.id,
+            },
+          }),
+
+          strapi.entityService.create("api::referrer.referrer", {
+            data: {
+              user: localTelegramUser.id,
+              referenceCode: localTelegramUser.telegram_id,
+            },
+          }),
+        ]);
+
+        await strapi
+          .service("api::referrer.referrer")
+          .referTelegramUser(telegramUser, referrer);
       }
 
       ctx.send({

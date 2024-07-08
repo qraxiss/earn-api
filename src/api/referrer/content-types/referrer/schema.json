@@ -31,7 +31,7 @@
       "inversedBy": "referrers"
     },
     "referenceCode": {
-      "type": "integer"
+      "type": "string"
     }
   }
 }

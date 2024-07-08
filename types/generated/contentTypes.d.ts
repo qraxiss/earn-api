@@ -1027,7 +1027,7 @@ export interface ApiReferrerReferrer extends Schema.CollectionType {
       'manyToOne',
       'api::referrer.referrer'
     >;
-    referenceCode: Attribute.Integer;
+    referenceCode: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

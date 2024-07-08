@@ -17,6 +17,10 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     const earnPerHour = await strapi
       .service("api::card.level")
       .calculateEarnPerHour(userId);
+
+    if (earnPerHour == 0) {
+      throw new Error("Your earning is 0!");
+    }
     const updatedStack = await strapi.db.query("api::card.stack").update({
       where: {
         user: userId,

@@ -1000,6 +1000,37 @@ export interface ApiDailyDailyReward extends Schema.CollectionType {
   };
 }
 
+export interface ApiLeaderBoardUserCount extends Schema.SingleType {
+  collectionName: 'user_count';
+  info: {
+    singularName: 'user-count';
+    pluralName: 'user-counts';
+    displayName: 'User Counts';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    dailyActiveUser: Attribute.Integer;
+    totalUser: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::leader-board.user-count',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::leader-board.user-count',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiReferrerReferrer extends Schema.CollectionType {
   collectionName: 'referrers';
   info: {
@@ -1223,6 +1254,7 @@ declare module '@strapi/types' {
       'api::card.stack': ApiCardStack;
       'api::daily.daily': ApiDailyDaily;
       'api::daily.daily-reward': ApiDailyDailyReward;
+      'api::leader-board.user-count': ApiLeaderBoardUserCount;
       'api::referrer.referrer': ApiReferrerReferrer;
       'api::task.claimed-task': ApiTaskClaimedTask;
       'api::task.task': ApiTaskTask;

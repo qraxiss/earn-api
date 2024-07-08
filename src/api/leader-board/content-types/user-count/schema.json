@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "user_count",
+  "info": {
+    "singularName": "user-count",
+    "pluralName": "user-counts",
+    "displayName": "User Counts",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "dailyActiveUser": {
+      "type": "integer"
+    },
+    "totalUser": {
+      "type": "integer"
+    }
+  }
+}

@@ -21,9 +21,9 @@
     },
     "user": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToOne",
       "target": "api::telegram.telegram-user",
-      "inversedBy": "dailies"
+      "mappedBy": "daily"
     }
   }
 }

@@ -949,7 +949,7 @@ export interface ApiDailyDaily extends Schema.CollectionType {
     claim: Attribute.DateTime;
     user: Attribute.Relation<
       'api::daily.daily',
-      'manyToOne',
+      'oneToOne',
       'api::telegram.telegram-user'
     >;
     createdAt: Attribute.DateTime;
@@ -1135,9 +1135,9 @@ export interface ApiTelegramTelegramUser extends Schema.CollectionType {
       'oneToMany',
       'api::task.claimed-task'
     >;
-    dailies: Attribute.Relation<
+    daily: Attribute.Relation<
       'api::telegram.telegram-user',
-      'oneToMany',
+      'oneToOne',
       'api::daily.daily'
     >;
     stack: Attribute.Relation<

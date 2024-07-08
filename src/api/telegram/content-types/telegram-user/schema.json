@@ -41,11 +41,11 @@
       "target": "api::task.claimed-task",
       "mappedBy": "user"
     },
-    "dailies": {
+    "daily": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "oneToOne",
       "target": "api::daily.daily",
-      "mappedBy": "user"
+      "inversedBy": "user"
     },
     "stack": {
       "type": "relation",

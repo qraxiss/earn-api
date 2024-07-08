@@ -42,7 +42,9 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         referenceCode: user.start_param,
       },
       data: {
-        referrers: [referrer.id],
+        referrers: {
+          connect: [referrer.id],
+        },
       },
       populate: {
         user: "*",

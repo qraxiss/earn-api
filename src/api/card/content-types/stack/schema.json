@@ -11,9 +11,6 @@
     "draftAndPublish": false
   },
   "attributes": {
-    "userId": {
-      "type": "integer"
-    },
     "time": {
       "type": "datetime"
     },

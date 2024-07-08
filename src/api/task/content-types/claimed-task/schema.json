@@ -12,12 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "userId": {
-      "type": "integer"
-    },
-    "taskId": {
-      "type": "integer"
-    },
     "user": {
       "type": "relation",
       "relation": "manyToOne",

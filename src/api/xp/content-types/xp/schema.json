@@ -16,9 +16,6 @@
       "type": "integer",
       "default": 0
     },
-    "userId": {
-      "type": "integer"
-    },
     "user": {
       "type": "relation",
       "relation": "oneToOne",

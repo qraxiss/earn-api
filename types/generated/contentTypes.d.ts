@@ -875,7 +875,6 @@ export interface ApiCardOwnedCard extends Schema.CollectionType {
       'api::card.card'
     >;
     level: Attribute.Integer & Attribute.DefaultTo<1>;
-    userId: Attribute.Integer;
     user: Attribute.Relation<
       'api::card.owned-card',
       'manyToOne',
@@ -910,7 +909,6 @@ export interface ApiCardStack extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    userId: Attribute.Integer;
     time: Attribute.DateTime;
     earnPerHour: Attribute.Float & Attribute.DefaultTo<0>;
     user: Attribute.Relation<
@@ -948,7 +946,6 @@ export interface ApiDailyDaily extends Schema.CollectionType {
   };
   attributes: {
     day: Attribute.Integer & Attribute.DefaultTo<1>;
-    userId: Attribute.Integer;
     claim: Attribute.DateTime;
     user: Attribute.Relation<
       'api::daily.daily',
@@ -1060,8 +1057,6 @@ export interface ApiTaskClaimedTask extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    userId: Attribute.Integer;
-    taskId: Attribute.Integer;
     user: Attribute.Relation<
       'api::task.claimed-task',
       'manyToOne',
@@ -1190,7 +1185,6 @@ export interface ApiXpXp extends Schema.CollectionType {
   };
   attributes: {
     point: Attribute.Integer & Attribute.DefaultTo<0>;
-    userId: Attribute.Integer;
     user: Attribute.Relation<
       'api::xp.xp',
       'oneToOne',

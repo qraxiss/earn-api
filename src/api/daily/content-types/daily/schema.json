@@ -16,9 +16,6 @@
       "type": "integer",
       "default": 1
     },
-    "userId": {
-      "type": "integer"
-    },
     "claim": {
       "type": "datetime"
     },

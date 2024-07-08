@@ -21,9 +21,6 @@
       "type": "integer",
       "default": 1
     },
-    "userId": {
-      "type": "integer"
-    },
     "user": {
       "type": "relation",
       "relation": "manyToOne",

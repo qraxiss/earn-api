@@ -19,7 +19,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     claimedTask = await strapi.entityService.create("api::task.claimed-task", {
       data: {
         user: userId,
-        taskId,
+        task: taskId,
       },
     });
 
@@ -34,7 +34,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     let claimedTask = await strapi.db.query("api::task.claimed-task").findOne({
       where: {
         user: userId,
-        taskId,
+        task: taskId,
       },
     });
     const isClaimed = !!claimedTask;

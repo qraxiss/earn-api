@@ -15,7 +15,7 @@ export default {
         .query("api::telegram.telegram-user")
         .findOne({
           where: {
-            username: telegramUser.username,
+            telegram_id: String(telegramUser.telegram_id),
           },
         });
 

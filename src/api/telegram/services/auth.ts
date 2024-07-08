@@ -1,5 +1,5 @@
 /**
- * telegram service
+ * auth service
  */
 
 export default () => ({});

@@ -21,6 +21,12 @@
     },
     "claim": {
       "type": "datetime"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::telegram.telegram-user",
+      "inversedBy": "dailies"
     }
   }
 }

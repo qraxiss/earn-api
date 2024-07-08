@@ -23,6 +23,12 @@
     },
     "userId": {
       "type": "integer"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::telegram.telegram-user",
+      "inversedBy": "cards"
     }
   }
 }

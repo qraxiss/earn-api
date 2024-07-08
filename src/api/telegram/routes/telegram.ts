@@ -2,8 +2,8 @@ export default {
   routes: [
     {
       method: "POST",
-      path: "/telegram",
-      handler: "telegram.webhook",
+      path: "/webhook",
+      handler: "webhook.webhook",
       config: {
         policies: [],
         middlewares: [],

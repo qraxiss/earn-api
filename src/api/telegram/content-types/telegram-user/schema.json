@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "telegram_users",
+  "info": {
+    "singularName": "telegram-user",
+    "pluralName": "telegram-users",
+    "displayName": "Telegram User",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "first_name": {
+      "type": "string",
+      "required": false,
+      "unique": false
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "telegram_id": {
+      "type": "string",
+      "unique": true
+    },
+    "start_param": {
+      "type": "string",
+      "required": false
+    },
+    "cards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::card.owned-card",
+      "mappedBy": "user"
+    },
+    "tasks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::task.claimed-task",
+      "mappedBy": "user"
+    },
+    "dailies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::daily.daily",
+      "mappedBy": "user"
+    },
+    "stack": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::card.stack",
+      "mappedBy": "user"
+    }
+  }
+}

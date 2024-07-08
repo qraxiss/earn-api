@@ -35,41 +35,35 @@ const authenticate = async (ctx: Context): Promise<Auth> => {
 
     if (token) {
       const { id } = token;
-      if (id) {
-        // Invalid token
-        if (!id) {
-          return { authenticated: false, credentials: null, ability: null };
-        }
 
-        const { user, permissions } = await info(id);
+      const permissions = (
+        await strapi.db.query("plugin::users-permissions.permission").findMany({
+          filters: {
+            role: { type: "authenticated" },
+          },
+        })
+      ).map(({ action }) => ({
+        action,
+      }));
 
-        // No user associated with the token
-        if (!user) {
-          return {
-            authenticated: false,
-            credentials: null,
-            ability: null,
-            error: "Invalid credentials",
-          };
-        }
+      // Generate an ability (content API engine) based on the given permissions
+      const ability =
+        await strapi.contentAPI.permissions.engine.generateAbility(permissions);
 
-        // Generate an ability (content API engine) based on the given permissions
-        const ability =
-          await strapi.contentAPI.permissions.engine.generateAbility(
-            permissions
-          );
+      ctx.state.user = { id };
 
-        ctx.state.user = user;
-
-        return {
-          authenticated: true,
-          credentials: user,
-          ability,
-        };
-      }
+      return {
+        authenticated: true,
+        credentials: { id } as any,
+        ability,
+      };
     }
 
-    const publicPermissions = await getPublicPermissions();
+    const publicPermissions = strapi
+      .plugin("users-permissions")
+      .service("permission")
+      .findPublicPermissions()
+      .then(map(({ action }) => ({ action })));
 
     if (publicPermissions.length === 0) {
       return { authenticated: false, credentials: null, ability: null };

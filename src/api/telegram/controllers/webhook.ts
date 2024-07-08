@@ -1,5 +1,5 @@
 /**
- * A set of functions called "actions" for `telegram`
+ * A set of functions called "actions" for `webhook`
  */
 
 export default {

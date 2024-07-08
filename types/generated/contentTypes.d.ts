@@ -876,6 +876,11 @@ export interface ApiCardOwnedCard extends Schema.CollectionType {
     >;
     level: Attribute.Integer & Attribute.DefaultTo<1>;
     userId: Attribute.Integer;
+    user: Attribute.Relation<
+      'api::card.owned-card',
+      'manyToOne',
+      'api::telegram.telegram-user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -908,6 +913,11 @@ export interface ApiCardStack extends Schema.CollectionType {
     userId: Attribute.Integer;
     time: Attribute.DateTime;
     earnPerHour: Attribute.Float & Attribute.DefaultTo<0>;
+    user: Attribute.Relation<
+      'api::card.stack',
+      'oneToOne',
+      'api::telegram.telegram-user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -940,6 +950,11 @@ export interface ApiDailyDaily extends Schema.CollectionType {
     day: Attribute.Integer & Attribute.DefaultTo<1>;
     userId: Attribute.Integer;
     claim: Attribute.DateTime;
+    user: Attribute.Relation<
+      'api::daily.daily',
+      'manyToOne',
+      'api::telegram.telegram-user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1025,6 +1040,7 @@ export interface ApiTaskClaimedTask extends Schema.CollectionType {
     singularName: 'claimed-task';
     pluralName: 'claimed-tasks';
     displayName: 'Claimed Task';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -1032,6 +1048,16 @@ export interface ApiTaskClaimedTask extends Schema.CollectionType {
   attributes: {
     userId: Attribute.Integer;
     taskId: Attribute.Integer;
+    user: Attribute.Relation<
+      'api::task.claimed-task',
+      'manyToOne',
+      'api::telegram.telegram-user'
+    >;
+    task: Attribute.Relation<
+      'api::task.claimed-task',
+      'oneToOne',
+      'api::task.task'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1070,6 +1096,60 @@ export interface ApiTaskTask extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::task.task', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::task.task', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTelegramTelegramUser extends Schema.CollectionType {
+  collectionName: 'telegram_users';
+  info: {
+    singularName: 'telegram-user';
+    pluralName: 'telegram-users';
+    displayName: 'Telegram User';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    username: Attribute.String & Attribute.Required & Attribute.Unique;
+    first_name: Attribute.String;
+    last_name: Attribute.String;
+    telegram_id: Attribute.String & Attribute.Unique;
+    start_param: Attribute.String;
+    cards: Attribute.Relation<
+      'api::telegram.telegram-user',
+      'oneToMany',
+      'api::card.owned-card'
+    >;
+    tasks: Attribute.Relation<
+      'api::telegram.telegram-user',
+      'oneToMany',
+      'api::task.claimed-task'
+    >;
+    dailies: Attribute.Relation<
+      'api::telegram.telegram-user',
+      'oneToMany',
+      'api::daily.daily'
+    >;
+    stack: Attribute.Relation<
+      'api::telegram.telegram-user',
+      'oneToOne',
+      'api::card.stack'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::telegram.telegram-user',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::telegram.telegram-user',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -1124,6 +1204,7 @@ declare module '@strapi/types' {
       'api::referrer.referrer': ApiReferrerReferrer;
       'api::task.claimed-task': ApiTaskClaimedTask;
       'api::task.task': ApiTaskTask;
+      'api::telegram.telegram-user': ApiTelegramTelegramUser;
       'api::xp.xp': ApiXpXp;
     }
   }

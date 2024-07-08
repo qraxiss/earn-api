@@ -4,7 +4,8 @@
   "info": {
     "singularName": "claimed-task",
     "pluralName": "claimed-tasks",
-    "displayName": "Claimed Task"
+    "displayName": "Claimed Task",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -16,6 +17,17 @@
     },
     "taskId": {
       "type": "integer"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::telegram.telegram-user",
+      "inversedBy": "tasks"
+    },
+    "task": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::task.task"
     }
   }
 }

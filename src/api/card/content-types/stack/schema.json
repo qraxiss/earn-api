@@ -20,6 +20,12 @@
     "earnPerHour": {
       "type": "float",
       "default": 0
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::telegram.telegram-user",
+      "inversedBy": "stack"
     }
   }
 }

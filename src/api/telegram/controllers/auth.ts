@@ -50,7 +50,10 @@ export default {
 
         await strapi
           .service("api::referrer.referrer")
-          .referTelegramUser(telegramUser, referrer);
+          .referTelegramUser(
+            { id: localTelegramUser.id, ...telegramUser },
+            referrer
+          );
       }
 
       ctx.send({

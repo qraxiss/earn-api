@@ -34,15 +34,28 @@ export default ({ strapi }: { strapi: Strapi }) => ({
   },
 
   async referTelegramUser(user, referrer) {
-    if (user.start_param && user.telegram_id !== user.start_param) {
-      return await strapi.db.query("api::referrer.referrer").update({
-        where: {
-          referenceCode: user.start_param,
-        },
-        data: {
-          referrers: [referrer.id],
-        },
-      });
+    if (!user.start_param && user.telegram_id === user.start_param) {
+      return;
     }
+    const updateData = await strapi.db.query("api::referrer.referrer").update({
+      where: {
+        referenceCode: user.start_param,
+      },
+      data: {
+        referrers: [referrer.id],
+      },
+      populate: {
+        user: "*",
+      },
+    });
+
+    if (!updateData) {
+      return;
+    }
+
+    return await Promise.all([
+      strapi.service("api::xp.xp").increaseByUserId(updateData.user.id, 30000),
+      strapi.service("api::xp.xp").increaseByUserId(user.id, 10000),
+    ]);
   },
 });

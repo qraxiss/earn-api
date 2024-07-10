@@ -62,7 +62,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         return {
           canClaim: false,
           streak: true,
-          remainTimeForClaim: 60 * 60 * 24 - currentTime.diff(tomorrow, unit),
+          remainTimeForClaim: 60 * 60 * 24 - currentTime.diff(today, unit),
           daily,
         };
       } else if (claimTime > yesterday) {
@@ -95,7 +95,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         return {
           canClaim: false,
           streak: true,
-          remainTimeForClaim: 60 * 60 * 24 - currentTime.diff(tomorrow, unit),
+          remainTimeForClaim: 60 * 60 * 24 - currentTime.diff(yesterday, unit),
           daily,
         };
       }

@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "choosen_cards",
+  "info": {
+    "singularName": "choosen-card",
+    "pluralName": "choosen-cards",
+    "displayName": "Choosen Card",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "card": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::card.card"
+    }
+  }
+}

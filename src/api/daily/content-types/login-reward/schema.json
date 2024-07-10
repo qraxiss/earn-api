@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "daily_rewards",
+  "collectionName": "login_rewards",
   "info": {
-    "singularName": "daily-reward",
-    "pluralName": "daily-rewards",
-    "displayName": "Daily Reward",
+    "singularName": "login-reward",
+    "pluralName": "login-rewards",
+    "displayName": "Login Reward",
     "description": ""
   },
   "options": {

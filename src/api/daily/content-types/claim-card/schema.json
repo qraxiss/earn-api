@@ -1,21 +1,16 @@
 {
   "kind": "collectionType",
-  "collectionName": "dailies",
+  "collectionName": "claim_cards",
   "info": {
-    "singularName": "daily",
-    "pluralName": "dailies",
-    "displayName": "Daily",
+    "singularName": "claim-card",
+    "pluralName": "claim-cards",
+    "displayName": "Claim Card",
     "description": ""
   },
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {},
   "attributes": {
-    "day": {
-      "type": "integer",
-      "default": 1
-    },
     "claim": {
       "type": "datetime"
     },
@@ -23,7 +18,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::telegram.telegram-user",
-      "mappedBy": "daily"
+      "inversedBy": "card"
+    },
+    "finded": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

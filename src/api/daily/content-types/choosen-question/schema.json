@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "choosen_question",
+  "info": {
+    "singularName": "choosen-question",
+    "pluralName": "choosen-questions",
+    "displayName": "Choosen Question",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "options": {
+      "type": "component",
+      "repeatable": true,
+      "component": "quest.option"
+    },
+    "question": {
+      "type": "string"
+    },
+    "answer": {
+      "type": "component",
+      "repeatable": false,
+      "component": "quest.option"
+    }
+  }
+}

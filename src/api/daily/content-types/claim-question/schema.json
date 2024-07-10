@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "claim_questions",
+  "info": {
+    "singularName": "claim-question",
+    "pluralName": "claim-questions",
+    "displayName": "Claim Question",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "claim": {
+      "type": "datetime"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::telegram.telegram-user",
+      "inversedBy": "question"
+    }
+  }
+}

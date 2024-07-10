@@ -933,12 +933,114 @@ export interface ApiCardStack extends Schema.CollectionType {
   };
 }
 
-export interface ApiDailyDaily extends Schema.CollectionType {
-  collectionName: 'dailies';
+export interface ApiDailyChoosenCard extends Schema.SingleType {
+  collectionName: 'choosen_cards';
   info: {
-    singularName: 'daily';
-    pluralName: 'dailies';
-    displayName: 'Daily';
+    singularName: 'choosen-card';
+    pluralName: 'choosen-cards';
+    displayName: 'Choosen Card';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    card: Attribute.Relation<
+      'api::daily.choosen-card',
+      'oneToOne',
+      'api::card.card'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::daily.choosen-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::daily.choosen-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDailyChoosenQuestion extends Schema.SingleType {
+  collectionName: 'choosen_question';
+  info: {
+    singularName: 'choosen-question';
+    pluralName: 'choosen-questions';
+    displayName: 'Choosen Question';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    options: Attribute.Component<'quest.option', true>;
+    question: Attribute.String;
+    answer: Attribute.Component<'quest.option'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::daily.choosen-question',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::daily.choosen-question',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDailyClaimCard extends Schema.CollectionType {
+  collectionName: 'claim_cards';
+  info: {
+    singularName: 'claim-card';
+    pluralName: 'claim-cards';
+    displayName: 'Claim Card';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    claim: Attribute.DateTime;
+    user: Attribute.Relation<
+      'api::daily.claim-card',
+      'oneToOne',
+      'api::telegram.telegram-user'
+    >;
+    finded: Attribute.Boolean & Attribute.DefaultTo<false>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::daily.claim-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::daily.claim-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDailyClaimLogin extends Schema.CollectionType {
+  collectionName: 'claim-logins';
+  info: {
+    singularName: 'claim-login';
+    pluralName: 'claim-logins';
+    displayName: 'Claim Login';
     description: '';
   };
   options: {
@@ -948,20 +1050,20 @@ export interface ApiDailyDaily extends Schema.CollectionType {
     day: Attribute.Integer & Attribute.DefaultTo<1>;
     claim: Attribute.DateTime;
     user: Attribute.Relation<
-      'api::daily.daily',
+      'api::daily.claim-login',
       'oneToOne',
       'api::telegram.telegram-user'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::daily.daily',
+      'api::daily.claim-login',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::daily.daily',
+      'api::daily.claim-login',
       'oneToOne',
       'admin::user'
     > &
@@ -969,12 +1071,47 @@ export interface ApiDailyDaily extends Schema.CollectionType {
   };
 }
 
-export interface ApiDailyDailyReward extends Schema.CollectionType {
-  collectionName: 'daily_rewards';
+export interface ApiDailyClaimQuestion extends Schema.CollectionType {
+  collectionName: 'claim_questions';
   info: {
-    singularName: 'daily-reward';
-    pluralName: 'daily-rewards';
-    displayName: 'Daily Reward';
+    singularName: 'claim-question';
+    pluralName: 'claim-questions';
+    displayName: 'Claim Question';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    claim: Attribute.DateTime;
+    user: Attribute.Relation<
+      'api::daily.claim-question',
+      'oneToOne',
+      'api::telegram.telegram-user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::daily.claim-question',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::daily.claim-question',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDailyLoginReward extends Schema.CollectionType {
+  collectionName: 'login_rewards';
+  info: {
+    singularName: 'login-reward';
+    pluralName: 'login-rewards';
+    displayName: 'Login Reward';
     description: '';
   };
   options: {
@@ -986,13 +1123,13 @@ export interface ApiDailyDailyReward extends Schema.CollectionType {
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::daily.daily-reward',
+      'api::daily.login-reward',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::daily.daily-reward',
+      'api::daily.login-reward',
       'oneToOne',
       'admin::user'
     > &
@@ -1169,7 +1306,7 @@ export interface ApiTelegramTelegramUser extends Schema.CollectionType {
     daily: Attribute.Relation<
       'api::telegram.telegram-user',
       'oneToOne',
-      'api::daily.daily'
+      'api::daily.claim-login'
     >;
     stack: Attribute.Relation<
       'api::telegram.telegram-user',
@@ -1185,6 +1322,16 @@ export interface ApiTelegramTelegramUser extends Schema.CollectionType {
       'api::telegram.telegram-user',
       'oneToOne',
       'api::referrer.referrer'
+    >;
+    question: Attribute.Relation<
+      'api::telegram.telegram-user',
+      'oneToOne',
+      'api::daily.claim-question'
+    >;
+    card: Attribute.Relation<
+      'api::telegram.telegram-user',
+      'oneToOne',
+      'api::daily.claim-card'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1252,8 +1399,12 @@ declare module '@strapi/types' {
       'api::card.card-category': ApiCardCardCategory;
       'api::card.owned-card': ApiCardOwnedCard;
       'api::card.stack': ApiCardStack;
-      'api::daily.daily': ApiDailyDaily;
-      'api::daily.daily-reward': ApiDailyDailyReward;
+      'api::daily.choosen-card': ApiDailyChoosenCard;
+      'api::daily.choosen-question': ApiDailyChoosenQuestion;
+      'api::daily.claim-card': ApiDailyClaimCard;
+      'api::daily.claim-login': ApiDailyClaimLogin;
+      'api::daily.claim-question': ApiDailyClaimQuestion;
+      'api::daily.login-reward': ApiDailyLoginReward;
       'api::leader-board.user-count': ApiLeaderBoardUserCount;
       'api::referrer.referrer': ApiReferrerReferrer;
       'api::task.claimed-task': ApiTaskClaimedTask;

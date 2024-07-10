@@ -44,7 +44,7 @@
     "daily": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::daily.daily",
+      "target": "api::daily.claim-login",
       "inversedBy": "user"
     },
     "stack": {
@@ -63,6 +63,18 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::referrer.referrer",
+      "mappedBy": "user"
+    },
+    "question": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::daily.claim-question",
+      "mappedBy": "user"
+    },
+    "card": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::daily.claim-card",
       "mappedBy": "user"
     }
   }

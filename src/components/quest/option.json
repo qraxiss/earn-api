@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_quest_options",
+  "info": {
+    "displayName": "Option",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "option": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "claim-logins",
+  "info": {
+    "singularName": "claim-login",
+    "pluralName": "claim-logins",
+    "displayName": "Claim Login",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "day": {
+      "type": "integer",
+      "default": 1
+    },
+    "claim": {
+      "type": "datetime"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::telegram.telegram-user",
+      "mappedBy": "daily"
+    }
+  }
+}

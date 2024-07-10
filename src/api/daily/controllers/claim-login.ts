@@ -7,12 +7,12 @@ export default {
     const { id: userId } = ctx.state.user;
     let data;
     try {
-      data = await strapi.service("api::daily.daily").claim(userId);
+      data = await strapi.service("api::daily.claim-login").claim(userId);
     } catch (error: any) {
       ctx.throw(error.message, 400);
     }
     ctx.send({
-      data: await strapi.service("api::daily.daily").status(userId),
+      data: await strapi.service("api::daily.claim-login").status(userId),
     });
   },
 
@@ -20,7 +20,7 @@ export default {
     const { id: userId } = ctx.state.user;
     let data;
     try {
-      data = await strapi.service("api::daily.daily").status(userId);
+      data = await strapi.service("api::daily.claim-login").status(userId);
     } catch (error: any) {
       ctx.throw(error.message, 400);
     }
@@ -33,7 +33,7 @@ export default {
   async days(ctx) {
     let data;
     try {
-      data = await strapi.service("api::daily.daily-reward").findOrderedDays();
+      data = await strapi.service("api::daily.login-reward").findOrderedDays();
     } catch (error: any) {
       ctx.throw(error.message, 400);
     }

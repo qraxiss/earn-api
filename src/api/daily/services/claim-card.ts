@@ -43,9 +43,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         canClaim: true && daily.finded,
         remainTimeForClaim: undefined,
         daily,
-        card: daily.finded
-          ? await strapi.service("api::daily.claim-card").getChoosen()
-          : undefined,
+        card: await strapi.service("api::daily.claim-card").getChoosen(),
       };
     }
     const { yesterday, today, tomorrow, currentTime } = strapi
@@ -67,9 +65,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           canClaim: true && daily.finded,
           remainTimeForClaim: undefined,
           daily,
-          card: daily.finded
-            ? await strapi.service("api::daily.claim-card").getChoosen()
-            : undefined,
+          card: await strapi.service("api::daily.claim-card").getChoosen(),
         };
       }
     } else {
@@ -95,6 +91,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     });
 
     return {
+      id: card.card.id,
       name: card.card.name,
       image: process.env.URL + card.card.image?.url,
     };

@@ -45,7 +45,7 @@ export default {
     const cardClaimStatus = await strapi
       .service("api::daily.claim-card")
       .status(userId);
-    if (cardClaimStatus.canClaim) {
+    if (!cardClaimStatus.canClaim && cardClaimStatus.card.id === cardId) {
       await strapi.entityService.update(
         "api::daily.claim-card",
         cardClaimStatus.daily.id,
@@ -111,7 +111,7 @@ export default {
     const cardClaimStatus = await strapi
       .service("api::daily.claim-card")
       .status(userId);
-    if (cardClaimStatus.canClaim) {
+    if (!cardClaimStatus.canClaim && cardClaimStatus.card.id === cardId) {
       await strapi.entityService.update(
         "api::daily.claim-card",
         cardClaimStatus.daily.id,

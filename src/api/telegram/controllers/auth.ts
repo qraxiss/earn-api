@@ -27,7 +27,7 @@ export default {
             data: telegramUser,
           });
 
-        const [xp, stack, referrer] = await Promise.all([
+        const [xp, stack, referrer, login, question, card] = await Promise.all([
           strapi.entityService.create("api::xp.xp", {
             data: {
               user: localTelegramUser.id,
@@ -44,6 +44,23 @@ export default {
             data: {
               user: localTelegramUser.id,
               referenceCode: localTelegramUser.telegram_id,
+            },
+          }),
+          strapi.entityService.create("api::daily.claim-login", {
+            data: {
+              user: localTelegramUser.id,
+            },
+          }),
+
+          strapi.entityService.create("api::daily.claim-question", {
+            data: {
+              user: localTelegramUser.id,
+            },
+          }),
+
+          strapi.entityService.create("api::daily.claim-card", {
+            data: {
+              user: localTelegramUser.id,
             },
           }),
         ]);

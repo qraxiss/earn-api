@@ -46,7 +46,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         card: await strapi.service("api::daily.claim-card").getChoosen(),
       };
     }
-    const { yesterday, today, tomorrow, currentTime } = strapi
+    const { yesterday, today, currentTime } = strapi
       .service("api::daily.claim")
       .info(16);
 

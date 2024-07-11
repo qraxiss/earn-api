@@ -14,5 +14,10 @@ export default {
       path: "/daily/question/status",
       handler: "claim-question.status",
     },
+    {
+      method: "GET",
+      path: "/daily/question",
+      handler: "claim-question.question",
+    },
   ],
 };

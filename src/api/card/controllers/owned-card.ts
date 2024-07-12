@@ -42,20 +42,22 @@ export default {
     } catch (error: any) {
       ctx.throw(error.message, 400);
     }
-    const cardClaimStatus = await strapi
-      .service("api::daily.claim-card")
-      .status(userId);
-    if (!cardClaimStatus.canClaim && cardClaimStatus.card.id === cardId) {
-      await strapi.entityService.update(
-        "api::daily.claim-card",
-        cardClaimStatus.daily.id,
-        {
-          data: {
-            finded: true,
-          },
-        }
-      );
-    }
+    try {
+      const cardClaimStatus = await strapi
+        .service("api::daily.claim-card")
+        .status(userId);
+      if (!cardClaimStatus.canClaim && cardClaimStatus.card.id === cardId) {
+        await strapi.entityService.update(
+          "api::daily.claim-card",
+          cardClaimStatus.daily.id,
+          {
+            data: {
+              finded: true,
+            },
+          }
+        );
+      }
+    } catch (error: any) {}
     const ownedCard = await strapi.entityService.create(
       "api::card.owned-card",
       {
@@ -108,20 +110,22 @@ export default {
       ctx.throw(error.message, 500);
     }
 
-    const cardClaimStatus = await strapi
-      .service("api::daily.claim-card")
-      .status(userId);
-    if (!cardClaimStatus.canClaim && cardClaimStatus.card.id === cardId) {
-      await strapi.entityService.update(
-        "api::daily.claim-card",
-        cardClaimStatus.daily.id,
-        {
-          data: {
-            finded: true,
-          },
-        }
-      );
-    }
+    try {
+      const cardClaimStatus = await strapi
+        .service("api::daily.claim-card")
+        .status(userId);
+      if (!cardClaimStatus.canClaim && cardClaimStatus.card.id === cardId) {
+        await strapi.entityService.update(
+          "api::daily.claim-card",
+          cardClaimStatus.daily.id,
+          {
+            data: {
+              finded: true,
+            },
+          }
+        );
+      }
+    } catch (error: any) {}
 
     ctx.send({
       data: await strapi

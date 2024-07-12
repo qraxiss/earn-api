@@ -75,6 +75,12 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           remainTimeForClaim: 60 * 60 * 24 - currentTime.diff(yesterday, unit),
           daily,
         };
+      } else {
+        return {
+          canClaim: true,
+          remainTimeForClaim: null,
+          daily,
+        };
       }
     }
   },

@@ -6,7 +6,7 @@ export default ({ env }) => ({
         authType: env("STORAGE_AUTH_TYPE", "default"),
         account: env("STORAGE_ACCOUNT"),
         accountKey: env("STORAGE_ACCOUNT_KEY"), //either account key or sas token is enough to make authentication
-        sasToken: env("STORAGE_ACCOUNT_SAS_TOKEN"),
+        sasToken: env("STORAGE_ACCOUNT_SAS_TOKEN"), // optional
         serviceBaseURL: env("STORAGE_URL"), // optional
         containerName: env("STORAGE_CONTAINER_NAME"),
         createContainerIfNotExist: env(

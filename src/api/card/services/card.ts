@@ -29,7 +29,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           },
           info: {
             name: ownedCard.card.name,
-            image: process.env.URL + card.image?.url,
+            image: card.image?.url,
             id: ownedCard.card.id,
             category: ownedCard.card.category.name,
             totalProfit: Math.round(ownedCard.card.totalProfit),
@@ -46,7 +46,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       return {
         info: {
           name: card.name,
-          image: process.env.URL + card.image?.url,
+          image: card.image?.url,
           totalProfit: 0,
           id: card.id,
           category: card.category.name,

@@ -43,7 +43,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         icon: true,
       },
     });
-    const icon = process.env.URL + task.icon?.url;
+    const icon = task.icon?.url;
     return {
       isClaimed,
       task: { ...task, icon },

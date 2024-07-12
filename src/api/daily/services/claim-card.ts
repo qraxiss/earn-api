@@ -93,7 +93,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     return {
       id: card.card.id,
       name: card.card.name,
-      image: process.env.URL + card.card.image?.url,
+      image: card.card.image?.url,
     };
   },
 

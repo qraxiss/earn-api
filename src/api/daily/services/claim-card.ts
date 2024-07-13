@@ -59,6 +59,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           canClaim: false,
           remainTimeForClaim: 60 * 60 * 24 - currentTime.diff(today, unit),
           daily,
+          card: await strapi.service("api::daily.claim-card").getChoosen(),
         };
       } else if (claimTime > yesterday) {
         return {
@@ -74,12 +75,14 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           canClaim: false,
           remainTimeForClaim: 60 * 60 * 24 - currentTime.diff(yesterday, unit),
           daily,
+          card: await strapi.service("api::daily.claim-card").getChoosen(),
         };
       } else {
         return {
           canClaim: true,
           remainTimeForClaim: null,
           daily,
+          card: await strapi.service("api::daily.claim-card").getChoosen(),
         };
       }
     }

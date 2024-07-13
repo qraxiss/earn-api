@@ -28,7 +28,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       },
     });
     const xp = await strapi.service("api::xp.xp").findPoint(userId);
-    await strapi.service("api::xp.xp").increase(xp.id, 5 * 1000 * 1000);
+    await strapi.service("api::xp.xp").increase(xp.id, 2 * 1000 * 1000);
 
     return await strapi.service("api::xp.xp").findPoint(userId);
   },

@@ -107,13 +107,10 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       },
     });
 
-    const earnPerHour = await strapi
-      .service("api::card.level")
-      .calculateEarnPerHour(userId);
     const xp = await strapi.service("api::xp.xp").findPoint(userId);
     const inc = await strapi
       .service("api::xp.xp")
-      .increase(xp.id, earnPerHour * 4);
+      .increase(xp.id, updatedStack.earnPerHour * 4);
     return {
       updatedStack,
       inc,

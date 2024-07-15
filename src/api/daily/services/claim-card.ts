@@ -64,7 +64,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       } else if (claimTime > yesterday) {
         return {
           canClaim: true && daily.finded,
-          remainTimeForClaim: undefined,
+          remainTimeForClaim: 60 * 60 * 24 - currentTime.diff(today, unit),
           daily,
           card: await strapi.service("api::daily.claim-card").getChoosen(),
         };

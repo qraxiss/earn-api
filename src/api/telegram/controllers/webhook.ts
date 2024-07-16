@@ -13,13 +13,6 @@ export default {
     console.log("headers: ", ctx.request.headers);
     console.log("query: ", ctx.request.query);
 
-    console.log(
-      data?.callback_query.data,
-      data?.callback_query?.data,
-      data?.callback_query?.data == "how_to_play",
-      data?.callback_query?.data === "how_to_play"
-    );
-
     try {
       if ((data?.message?.text as string).includes("/start")) {
         await bot.sendMessage(
@@ -67,7 +60,7 @@ Everyone who launches the app will earn from the airdrop!
 
       if (data?.callback_query?.data == "how_to_play") {
         const res = await bot.sendMessage(
-          data.callback_query.from.id,
+          data.callback_query.message.chat.id,
           `How to Play in Shopcek Earniverse 🌟
  
 💰 Earn Coins Open your shop and start earning coins every second.
@@ -89,7 +82,8 @@ Everyone who launches the app will earn from the airdrop. Don’t miss out on yo
 
       ctx.body = "ok";
     } catch (err) {
-      ctx.body = err;
+      console.log(err);
+      ctx.body = "ok";
     }
   },
 };

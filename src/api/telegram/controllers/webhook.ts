@@ -14,7 +14,10 @@ export default {
     console.log("query: ", ctx.request.query);
 
     try {
-      if ((data?.message?.text as string).includes("/start")) {
+      if (
+        data?.message?.text &&
+        (data?.message?.text as string).includes("/start")
+      ) {
         await bot.sendMessage(
           data.message.chat.id,
           `Hello! Welcome to the Shopcek Earniverse! 🌟

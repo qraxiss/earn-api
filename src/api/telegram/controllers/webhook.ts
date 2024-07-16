@@ -13,8 +13,10 @@ export default {
     console.log("headers: ", ctx.request.headers);
     console.log("query: ", ctx.request.query);
 
+    console.log(data?.callback_query);
+
     try {
-      if ((data.message.text as string).includes("/start")) {
+      if ((data?.message?.text as string).includes("/start")) {
         await bot.sendMessage(
           data.message.chat.id,
           `Hello! Welcome to the Shopcek Earniverse! 🌟
@@ -33,14 +35,20 @@ Everyone who launches the app will earn from the airdrop!
                     text: "Start Now",
                     url: "https://t.me/shopcekbot/app",
                   },
+                ],
+                [
                   {
                     text: "Subscribe to the channel",
                     url: "https://t.me/Shopcek",
                   },
+                ],
+                [
                   {
                     text: "Subscribe to X",
                     url: "https://x.com/shopcek",
                   },
+                ],
+                [
                   {
                     text: "How to Play",
                     callback_data: "how_to_play",
@@ -49,6 +57,26 @@ Everyone who launches the app will earn from the airdrop!
               ],
             },
           }
+        );
+      }
+
+      if (data?.callback_query?.data === "how_to_play") {
+        await bot.sendMessage(
+          data.callback_query.from.id,
+          `How to Play in Shopcek Earniverse 🌟
+ 
+💰 Earn Coins Open your shop and start earning coins every second.
+ 
+📈 Upgrade Items Upgrade items in electronics, fashion, real estate, and vehicles to boost your hourly earnings.
+ 
+⏰ Profit Per Hour Your shop will earn coins for 4 hours. After that, log in again to collect your earnings and reopen your shop.
+ 
+👥 Friends Invite friends to join and earn bonuses. Help your friends and earn even more rewards together.
+ 
+🪙 SHPC Token Distribution At the end of the season, SHPC tokens will be distributed among players based on their profit rates. Stay tuned for announcements in our channel!
+ 
+Everyone who launches the app will earn from the airdrop. Don’t miss out on your chance to win big!
+`
         );
       }
 

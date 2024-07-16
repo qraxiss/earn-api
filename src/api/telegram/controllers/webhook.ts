@@ -9,9 +9,6 @@ const bot = new TelegramBot(process.env.BOT_TOKEN);
 export default {
   webhook: async (ctx, next) => {
     const data = ctx.request.body;
-    console.log("body: ", ctx.request.body);
-    console.log("headers: ", ctx.request.headers);
-    console.log("query: ", ctx.request.query);
 
     try {
       if (
@@ -62,7 +59,7 @@ Everyone who launches the app will earn from the airdrop!
       }
 
       if (data?.callback_query?.data == "how_to_play") {
-        const res = await bot.sendMessage(
+        await bot.sendMessage(
           data.callback_query.message.chat.id,
           `How to Play in Shopcek Earniverse 🌟
  
@@ -79,8 +76,6 @@ Everyone who launches the app will earn from the airdrop!
 Everyone who launches the app will earn from the airdrop. Don’t miss out on your chance to win big!
 `
         );
-
-        console.log("bot-message", res);
       }
 
       ctx.body = "ok";

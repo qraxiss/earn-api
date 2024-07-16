@@ -39,7 +39,6 @@ function parseTelegramInitData(initData: string) {
 export default () => ({
   async auth(initData: string) {
     const authTelegramData = parseTelegramInitData(initData);
-    console.log(process.env.BOT_TOKEN);
     const secretKey = encodeHmac(process.env.BOT_TOKEN, WEB_APP_DATA_CONST);
 
     const validationKey = encodeHmac(

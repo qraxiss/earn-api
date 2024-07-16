@@ -13,7 +13,7 @@ export default {
     console.log("headers: ", ctx.request.headers);
     console.log("query: ", ctx.request.query);
 
-    console.log(data?.callback_query);
+    console.log(data?.callback_query.data);
 
     try {
       if ((data?.message?.text as string).includes("/start")) {
@@ -61,7 +61,7 @@ Everyone who launches the app will earn from the airdrop!
       }
 
       if (data?.callback_query?.data === "how_to_play") {
-        await bot.sendMessage(
+        const res = await bot.sendMessage(
           data.callback_query.from.id,
           `How to Play in Shopcek Earniverse 🌟
  
@@ -78,6 +78,8 @@ Everyone who launches the app will earn from the airdrop!
 Everyone who launches the app will earn from the airdrop. Don’t miss out on your chance to win big!
 `
         );
+
+        console.log("bot-message", res);
       }
 
       ctx.body = "ok";

@@ -1,8 +1,3 @@
-/**
- * A set of functions called "actions" for `webhook`
- */
-
-import { options } from "joi";
 import TelegramBot from "node-telegram-bot-api";
 
 const bot = new TelegramBot(process.env.BOT_TOKEN);
@@ -62,28 +57,28 @@ Everyone who launches the app will earn from the airdrop!
       if (data?.callback_query?.data == "how_to_play") {
         await bot.sendMessage(
           data.callback_query.message.chat.id,
-          `**How to Play in Shopcek Earniverse 🌟**
+          `How to Play in Shopcek Earniverse 🌟
 
-**💰 Earn Coins**
+💰 Earn Coins
 Open your shop and start earning coins every second.
 
-**📈 Upgrade Items**
+📈 Upgrade Items
 Upgrade items in electronics, fashion, real estate, and vehicles to boost your hourly earnings.
 
-**⏰ Profit Per Hour**
+⏰ Profit Per Hour
 Your shop will earn coins for 4 hours. After that, log in again to collect your earnings and reopen your shop.
 
-**👥 Friends**
+👥 Friends
 Invite friends to join and earn bonuses. Help your friends and earn even more rewards together.
 
-**🪙 How to Earn from Airdrop?**
+🪙 How to Earn from Airdrop?
 
 SHPC tokens will be distributed based on profit rates.
 Earn more SHPC by referring friends with your referral links. You can benefit from both!
 
-**EVERYONE** who launches the app will **EARN** from the airdrop. Don’t miss out on your chance to **WIN BIG!**`,
+EVERYONE who launches the app will EARN from the airdrop. Don’t miss out on your chance to WIN BIG!/b>`,
           {
-            parse_mode: "MarkdownV2",
+            parse_mode: "HTML",
           }
         );
       }

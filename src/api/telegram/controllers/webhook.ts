@@ -2,6 +2,7 @@
  * A set of functions called "actions" for `webhook`
  */
 
+import { options } from "joi";
 import TelegramBot from "node-telegram-bot-api";
 
 const bot = new TelegramBot(process.env.BOT_TOKEN);
@@ -80,7 +81,10 @@ Invite friends to join and earn bonuses. Help your friends and earn even more re
 SHPC tokens will be distributed based on profit rates.
 Earn more SHPC by referring friends with your referral links. You can benefit from both!
 
-**EVERYONE** who launches the app will **EARN** from the airdrop. Don’t miss out on your chance to **WIN BIG!**`
+**EVERYONE** who launches the app will **EARN** from the airdrop. Don’t miss out on your chance to **WIN BIG!**`,
+          {
+            parse_mode: "MarkdownV2",
+          }
         );
       }
 

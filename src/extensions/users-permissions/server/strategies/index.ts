@@ -7,6 +7,37 @@ import {
   publicPermissions as getPublicPermissions,
 } from "../../../../services/auth";
 
+const PERMISSONS = [
+  { action: "plugin::users-permissions.user.me" },
+  { action: "plugin::users-permissions.auth.changePassword" },
+  { action: "plugin::users-permissions.auth.jwt" },
+  { action: "api::referrer.referrer.findReferrers" },
+  { action: "api::card.card.cards" },
+  { action: "api::card.owned-card.buyCard" },
+  { action: "api::card.stack.start" },
+  { action: "api::card.stack.claim" },
+  { action: "api::card.owned-card.upgradeCard" },
+  { action: "api::card.owned-card.ownedCards" },
+  { action: "api::card.stack.status" },
+  { action: "api::xp.xp.xp" },
+  { action: "api::task.task.claim" },
+  { action: "api::task.task.status" },
+  { action: "api::leader-board.leader-board.ranks" },
+  { action: "api::leader-board.leader-board.stats" },
+  { action: "api::daily.claim-login.days" },
+  { action: "api::daily.claim-login.claim" },
+  { action: "api::daily.claim-login.status" },
+  { action: "api::daily.claim-question.claim" },
+  { action: "api::daily.claim-question.status" },
+  { action: "api::daily.claim-card.claim" },
+  { action: "api::daily.claim-card.status" },
+  { action: "api::daily.claim-question.question" },
+];
+
+const PUBLIC = [
+  { action: "api::telegram.auth.auth" },
+  { action: "api::telegram.webhook.webhook" },
+];
 // Define types for user, token, and settings
 interface User {
   address: string;
@@ -36,19 +67,8 @@ const authenticate = async (ctx: Context): Promise<Auth> => {
     if (token) {
       const { id } = token;
 
-      const permissions = (
-        await strapi.db.query("plugin::users-permissions.permission").findMany({
-          filters: {
-            role: { type: "authenticated" },
-          },
-        })
-      ).map(({ action }) => ({
-        action,
-      }));
-
-      // Generate an ability (content API engine) based on the given permissions
       const ability =
-        await strapi.contentAPI.permissions.engine.generateAbility(permissions);
+        await strapi.contentAPI.permissions.engine.generateAbility(PERMISSONS);
 
       ctx.state.user = { id };
 
@@ -59,18 +79,8 @@ const authenticate = async (ctx: Context): Promise<Auth> => {
       };
     }
 
-    const publicPermissions = strapi
-      .plugin("users-permissions")
-      .service("permission")
-      .findPublicPermissions()
-      .then(map(({ action }) => ({ action })));
-
-    if (publicPermissions.length === 0) {
-      return { authenticated: false, credentials: null, ability: null };
-    }
-
     const ability = await strapi.contentAPI.permissions.engine.generateAbility(
-      publicPermissions
+      PUBLIC
     );
 
     return {

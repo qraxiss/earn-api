@@ -61,26 +61,26 @@ Everyone who launches the app will earn from the airdrop!
       if (data?.callback_query?.data == "how_to_play") {
         await bot.sendMessage(
           data.callback_query.message.chat.id,
-          `<b>How to Play in Shopcek Earniverse 🌟</b>
+          `**How to Play in Shopcek Earniverse 🌟**
 
-<b>💰 Earn Coins</b>
+**💰 Earn Coins**
 Open your shop and start earning coins every second.
 
-<b>📈 Upgrade Items</b>
+**📈 Upgrade Items**
 Upgrade items in electronics, fashion, real estate, and vehicles to boost your hourly earnings.
 
-<b>⏰ Profit Per Hour</b>
+**⏰ Profit Per Hour**
 Your shop will earn coins for 4 hours. After that, log in again to collect your earnings and reopen your shop.
 
-<b>👥 Friends</b>
+**👥 Friends**
 Invite friends to join and earn bonuses. Help your friends and earn even more rewards together.
 
-<b>🪙 How to Earn from Airdrop?</b>
+**🪙 How to Earn from Airdrop?**
 
 SHPC tokens will be distributed based on profit rates.
 Earn more SHPC by referring friends with your referral links. You can benefit from both!
 
-<b>EVERYONE</b> who launches the app will <b>EARN</b> from the airdrop. Don’t miss out on your chance to <b>WIN BIG!</b>`
+**EVERYONE** who launches the app will **EARN** from the airdrop. Don’t miss out on your chance to **WIN BIG!**`
         );
       }
 

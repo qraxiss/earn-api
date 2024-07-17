@@ -27,7 +27,7 @@ Everyone who launches the app will earn from the airdrop!
                 [
                   {
                     text: "Start Now",
-                    url: "https://t.me/shopcekbot/app",
+                    url: "https://t.me/shopcekbot/start",
                   },
                 ],
                 [

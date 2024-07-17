@@ -41,7 +41,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     if (!daily.claim) {
       return {
         canClaim: true && daily.finded,
-        remainTimeForClaim: undefined,
+        remainTimeForClaim: null,
         daily,
         card: await strapi.service("api::daily.claim-card").getChoosen(),
       };
@@ -79,7 +79,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         };
       } else {
         return {
-          canClaim: true,
+          canClaim: true && daily.finded,
           remainTimeForClaim: null,
           daily,
           card: await strapi.service("api::daily.claim-card").getChoosen(),

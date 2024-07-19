@@ -14,4 +14,4 @@ RUN yarn global add pm2
 
 EXPOSE 1338
 
-CMD ["pm2-runtime", "start", "yarn", "--name", "app", "--", "start"]
+CMD ["pm2-runtime", "start", "ecosystem.config.js"]

@@ -84,7 +84,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         });
 
         return {
-          canClaim: true,
+          canClaim: false,
           streak: false,
           remainTimeForClaim: null,
           daily,

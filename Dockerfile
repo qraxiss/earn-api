@@ -10,6 +10,8 @@ COPY . .
 
 RUN yarn build
 
+RUN yarn global add pm2
+
 EXPOSE 1338
 
-CMD ["yarn", "start"]
+CMD ["pm2-runtime", "start", "yarn", "--name", "app", "--", "start"]

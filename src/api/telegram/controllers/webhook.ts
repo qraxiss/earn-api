@@ -14,13 +14,12 @@ export default {
         await bot.sendMessage(
           data.message.chat.id,
           `Hello! Welcome to the Shopcek Earniverse! 🌟
-You are now the owner of your very own virtual shop.
-Which items will you stock? You decide. Open your shop, collect coins, and boost your earnings.
-Develop your strategy, upgrade your items, and maximize your profits.
-We appreciate your efforts, and you'll be rewarded when the token is listed (dates coming soon).🚀
-Don't forget about your friends - invite them to join the game and earn even more coins together!
-Everyone who launches the app will earn from the airdrop!
-`,
+
+You are now the owner of your very own virtual shop. Which items will you stock? You decide. Open your shop, collect coins, and boost your earnings.
+
+We appreciate your efforts, and you'll be rewarded when the token is listed (dates coming soon). 🚀
+
+Don't forget about your friends - invite them to join the game and earn even more coins together!`,
           {
             reply_markup: {
               inline_keyboard: [
@@ -63,20 +62,21 @@ Everyone who launches the app will earn from the airdrop!
 Open your shop and start earning coins every second.
 
 <b>📈 Upgrade Items</b>
-Upgrade items in electronics, fashion, real estate, and vehicles to boost your hourly earnings.
+Upgrade items to boost your hourly earnings.
 
 <b>⏰ Profit Per Hour</b>
-Your shop will earn coins for 4 hours. After that, log in again to collect your earnings and reopen your shop.
+Earn coins for 4 hours, then log in again to collect and reopen.
 
 <b>👥 Friends</b>
-Invite friends to join and earn bonuses. Help your friends and earn even more rewards together.
+Invite friends to join and earn bonuses together.
 
 <b>🪙 How to Earn from Airdrop?</b>
 
-SHPC tokens will be distributed based on profit rates.
-Earn more SHPC by referring friends with your referral links. You can benefit from both!
+Game Performance-Based Rewards: Earn SHPC based on your profit rate.
+Referral-Based Rewards: Earn SHPC by referring friends.
+Raffle for Big Winners: Join late? No problem! Just launching the app makes you eligible. 40% of the airdrop goes to 500 lucky winners. Shopcek will turn 500 participants into whales! Live raffle three days before token listing, broadcasted in front of millions.
 
-<b>EVERYONE</b> who launches the app will <b>EARN</b> from the airdrop. Don’t miss out on your chance to <b>WIN BIG!</b>`,
+Don’t miss out! Launch the app and be one of the 500 lucky winners!`,
           {
             parse_mode: "HTML",
           }
